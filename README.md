@@ -9,6 +9,9 @@ This graph editor allows you to skip the editor work and create a Node Graph tha
 - Search window.
 - Blackboard that supports most types.
 
+# Warning
+- Not fully ready. Refactoring of the Port connections will be made in the next version. GUID id's will be stored to link Port/Nodes instead of storing references (which seem to break the samples and could be a possible issue in the future).
+
 ## Usage
 - VisualGraph generates a starting point for you to create your custom graph
 - To start create a script that extends VisualGraphNode. This is either the basic node for your graph or a base node your graph will use.
@@ -33,3 +36,6 @@ This graph editor allows you to skip the editor work and create a Node Graph tha
 ![](https://raw.githubusercontent.com/BusStopStudios/Doc/main/Visual-Graph/FSM.PNG)
 
 ![](https://raw.githubusercontent.com/BusStopStudios/Doc/main/Visual-Graph/FSM%20Component.PNG)
+
+# Bugs
+- When downloading the Samples the edges break. 
