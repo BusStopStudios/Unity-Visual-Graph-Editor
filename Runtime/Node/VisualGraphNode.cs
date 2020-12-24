@@ -27,7 +27,7 @@ namespace VisualGraphRuntime
         public IEnumerable<VisualGraphPort> Inputs { get { foreach (VisualGraphPort port in Ports) { if (port.Direction == VisualGraphPort.PortDirection.Input) yield return port; } } }
         public IEnumerable<VisualGraphPort> Outputs { get { foreach (VisualGraphPort port in Ports) { if (port.Direction == VisualGraphPort.PortDirection.Output) yield return port; } } }
 
-        [HideInInspector] public List<VisualGraphPort> Ports = new List<VisualGraphPort>();
+        [HideInInspector] [SerializeReference] public List<VisualGraphPort> Ports = new List<VisualGraphPort>();
 
         /// <summary>
         /// Find the first port based off guid Id

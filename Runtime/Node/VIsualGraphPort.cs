@@ -30,17 +30,17 @@ namespace VisualGraphRuntime
         [Serializable]
         public class VisualGraphPortConnection
         {
-            public VisualGraphNode Node;    // Node that should contain a port based off the guid
-            public VisualGraphPort port;    // This must be set in the OnEnable for the graph cannot be stored
+            [SerializeReference] public VisualGraphNode Node;    // Node that should contain a port based off the guid
+            [SerializeReference] public VisualGraphPort port;    // This must be set in the OnEnable for the graph cannot be stored
             public string guid;               // Reference to the port that belongs to the Node
         }
 
         // internals
-        /*[HideInInspector]*/ public string Name;
-        /*[HideInInspector]*/ public PortDirection Direction;
-        /*[HideInInspector]*/ public bool CanBeRemoved = true;
-        /*[HideInInspector]*/ public string guid;
-        /*[HideInInspector]*/ public List<VisualGraphPortConnection> Connections = new List<VisualGraphPortConnection>();
+        [HideInInspector] public string Name;
+        [HideInInspector] public PortDirection Direction;
+        [HideInInspector] public bool CanBeRemoved = true;
+        [HideInInspector] public string guid;
+        [HideInInspector] [SerializeReference] public List<VisualGraphPortConnection> Connections = new List<VisualGraphPortConnection>();
 
         #region UNITY_EDITOR
 #if UNITY_EDITOR

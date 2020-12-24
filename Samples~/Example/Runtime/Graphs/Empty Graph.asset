@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8434382387319094291
+--- !u!114 &-6953978751454193590
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13,13 +13,19 @@ MonoBehaviour:
   m_Name: Start
   m_EditorClassIdentifier: 
   Ports:
-  - Name: Next
-    Direction: 1
-    CanBeRemoved: 0
-    guid: 22bff9e6-ceb0-40c0-8020-2d856a4798e5
-    Connections: []
+  - id: 0
   editor_ActiveNode: 0
   position: {x: 270, y: 30}
+  references:
+    version: 1
+    00000000:
+      type: {class: VisualGraphPort, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
+      data:
+        Name: Next
+        Direction: 1
+        CanBeRemoved: 0
+        guid: 7da33361-a994-408a-a9e7-f9d62d6c1725
+        Connections: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32,8 +38,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6fde670e7119d9429e3117e89788fe2, type: 3}
   m_Name: Empty Graph
   m_EditorClassIdentifier: 
-  StartingNode: {fileID: -8434382387319094291}
+  StartingNode: {fileID: -6953978751454193590}
   Nodes:
-  - {fileID: -8434382387319094291}
+  - {fileID: -6953978751454193590}
   CommentBlocks: []
   BlackboardProperties: []

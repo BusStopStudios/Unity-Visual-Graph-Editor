@@ -59,17 +59,17 @@ namespace VisualGraphEditor
             defaultInspector.Add(inspectorIMGUI);
             rootElement.Add(defaultInspector);
 
-            ObjectField propertyField = new ObjectField("Graph");
-            propertyField.objectType = target.GetType().GetField("graph").GetValue(target).GetType();
-            propertyField.bindingPath = "graph";
-            propertyField.Bind(new SerializedObject(target));
-            propertyField.RegisterCallback<ChangeEvent<UnityEngine.Object>>( evt =>
-            {
-                target.GetType().GetField("graph").SetValue(target, evt.newValue);
-                MethodInfo method = target.GetType().BaseType.GetMethod("UpdateProperties", BindingFlags.Public | BindingFlags.Instance);
-                method.Invoke(target, null);
-            });
-            rootElement.Add(propertyField);
+            //ObjectField propertyField = new ObjectField("Graph");
+            //propertyField.objectType = target.GetType().GetField("graph").GetValue(target).GetType();
+            //propertyField.bindingPath = "graph";
+            //propertyField.Bind(new SerializedObject(target));
+            //propertyField.RegisterCallback<ChangeEvent<UnityEngine.Object>>( evt =>
+            //{
+            //    target.GetType().GetField("graph").SetValue(target, evt.newValue);
+            //    MethodInfo method = target.GetType().BaseType.GetMethod("UpdateProperties", BindingFlags.Public | BindingFlags.Instance);
+            //    method.Invoke(target, null);
+            //});
+            //rootElement.Add(propertyField);
 
             // Because everything in Components is a MonoBehaviour we can get the base type
             // If they base type is a generic of type VisualGraphMonoBehaviour<> then we can try and

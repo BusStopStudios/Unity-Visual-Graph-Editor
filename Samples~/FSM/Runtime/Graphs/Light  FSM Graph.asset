@@ -1,22 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8639677850109524451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd71a48f486cef54b885527933b16c89, type: 3}
-  m_Name: FloatBlackboardProperty
-  m_EditorClassIdentifier: 
-  overrideProperty: 0
-  guid: 71143234-50c7-40fc-8a6a-c6bfbac67878
-  Name: Delay
-  abstractData: 0.5
---- !u!114 &-6493491684333143567
+--- !u!114 &-8733673725528234871
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -29,114 +13,84 @@ MonoBehaviour:
   m_Name: Start
   m_EditorClassIdentifier: 
   Ports:
-  - Name: Next
-    Direction: 1
-    CanBeRemoved: 0
-    guid: 7bf18449-4e5e-4395-bdba-2bc148a6b4fa
-    Connections:
-    - Node: {fileID: -4925268460646235487}
-      port:
+  - id: 0
+  editor_ActiveNode: 0
+  position: {x: 270, y: 30}
+  references:
+    version: 1
+    00000000:
+      type: {class: VisualGraphPort, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
+      data:
+        Name: Next
+        Direction: 1
+        CanBeRemoved: 0
+        guid: fab79a67-8103-4fb8-a683-3f034f38d68c
+        Connections:
+        - id: 1
+    00000001:
+      type: {class: VisualGraphPort/VisualGraphPortConnection, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
+      data:
+        Node: {fileID: -3628775139019133522}
+        port:
+          id: 2
+        guid: d7786b39-2086-4fb8-b529-2665c87f92e4
+    00000002:
+      type: {class: VisualGraphPort, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
+      data:
         Name: Input
         Direction: 0
         CanBeRemoved: 0
-        guid: 15d19c5d-5610-49de-b9ad-883af302beee
+        guid: d7786b39-2086-4fb8-b529-2665c87f92e4
         Connections:
-        - Node: {fileID: -6493491684333143567}
-          port:
-            Name: Next
-            Direction: 1
-            CanBeRemoved: 0
-            guid: 7bf18449-4e5e-4395-bdba-2bc148a6b4fa
-            Connections:
-            - Node: {fileID: -4925268460646235487}
-              port:
-                Name: Input
-                Direction: 0
-                CanBeRemoved: 0
-                guid: 15d19c5d-5610-49de-b9ad-883af302beee
-                Connections:
-                - Node: {fileID: -6493491684333143567}
-                  port:
-                    Name: Next
-                    Direction: 1
-                    CanBeRemoved: 0
-                    guid: 7bf18449-4e5e-4395-bdba-2bc148a6b4fa
-                    Connections:
-                    - Node: {fileID: -4925268460646235487}
-                      port:
-                        Name: Input
-                        Direction: 0
-                        CanBeRemoved: 0
-                        guid: 15d19c5d-5610-49de-b9ad-883af302beee
-                      guid: 15d19c5d-5610-49de-b9ad-883af302beee
-                  guid: 7bf18449-4e5e-4395-bdba-2bc148a6b4fa
-                - Node: {fileID: 6839267063973310425}
-                  port:
-                    Name: Turn Off
-                    Direction: 1
-                    CanBeRemoved: 1
-                    guid: d6bf9801-f857-4537-9281-c413ff35010b
-                    Connections:
-                    - Node: {fileID: -4925268460646235487}
-                      port:
-                        Name: Input
-                        Direction: 0
-                        CanBeRemoved: 0
-                        guid: 15d19c5d-5610-49de-b9ad-883af302beee
-                      guid: 15d19c5d-5610-49de-b9ad-883af302beee
-                  guid: d6bf9801-f857-4537-9281-c413ff35010b
-              guid: 15d19c5d-5610-49de-b9ad-883af302beee
-          guid: 7bf18449-4e5e-4395-bdba-2bc148a6b4fa
-        - Node: {fileID: 6839267063973310425}
-          port:
-            Name: Turn Off
-            Direction: 1
-            CanBeRemoved: 1
-            guid: d6bf9801-f857-4537-9281-c413ff35010b
-            Connections:
-            - Node: {fileID: -4925268460646235487}
-              port:
-                Name: Input
-                Direction: 0
-                CanBeRemoved: 0
-                guid: 15d19c5d-5610-49de-b9ad-883af302beee
-                Connections:
-                - Node: {fileID: -6493491684333143567}
-                  port:
-                    Name: Next
-                    Direction: 1
-                    CanBeRemoved: 0
-                    guid: 7bf18449-4e5e-4395-bdba-2bc148a6b4fa
-                    Connections:
-                    - Node: {fileID: -4925268460646235487}
-                      port:
-                        Name: Input
-                        Direction: 0
-                        CanBeRemoved: 0
-                        guid: 15d19c5d-5610-49de-b9ad-883af302beee
-                      guid: 15d19c5d-5610-49de-b9ad-883af302beee
-                  guid: 7bf18449-4e5e-4395-bdba-2bc148a6b4fa
-                - Node: {fileID: 6839267063973310425}
-                  port:
-                    Name: Turn Off
-                    Direction: 1
-                    CanBeRemoved: 1
-                    guid: d6bf9801-f857-4537-9281-c413ff35010b
-                    Connections:
-                    - Node: {fileID: -4925268460646235487}
-                      port:
-                        Name: Input
-                        Direction: 0
-                        CanBeRemoved: 0
-                        guid: 15d19c5d-5610-49de-b9ad-883af302beee
-                      guid: 15d19c5d-5610-49de-b9ad-883af302beee
-                  guid: d6bf9801-f857-4537-9281-c413ff35010b
-              guid: 15d19c5d-5610-49de-b9ad-883af302beee
-          guid: d6bf9801-f857-4537-9281-c413ff35010b
-      guid: 15d19c5d-5610-49de-b9ad-883af302beee
-  editor_ActiveNode: 0
-  position: {x: 270, y: 30}
---- !u!114 &-4925268460646235487
+        - id: 3
+        - id: 4
+    00000003:
+      type: {class: VisualGraphPort/VisualGraphPortConnection, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
+      data:
+        Node: {fileID: -8733673725528234871}
+        port:
+          id: 0
+        guid: fab79a67-8103-4fb8-a683-3f034f38d68c
+    00000004:
+      type: {class: VisualGraphPort/VisualGraphPortConnection, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
+      data:
+        Node: {fileID: 8608338491921396834}
+        port:
+          id: 5
+        guid: 17e62944-ca5f-44d8-afb5-a653af04b78b
+    00000005:
+      type: {class: VisualGraphPort, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
+      data:
+        Name: Turn Off
+        Direction: 1
+        CanBeRemoved: 1
+        guid: 17e62944-ca5f-44d8-afb5-a653af04b78b
+        Connections:
+        - id: 6
+    00000006:
+      type: {class: VisualGraphPort/VisualGraphPortConnection, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
+      data:
+        Node: {fileID: -3628775139019133522}
+        port:
+          id: 2
+        guid: d7786b39-2086-4fb8-b529-2665c87f92e4
+--- !u!114 &-7872794448248944276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd71a48f486cef54b885527933b16c89, type: 3}
+  m_Name: FloatBlackboardProperty
+  m_EditorClassIdentifier: 
+  overrideProperty: 0
+  guid: 4524a90c-86cc-4ffd-bfca-164036b81328
+  Name: Delay
+  abstractData: 0.5
+--- !u!114 &-3628775139019133522
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,226 +103,101 @@ MonoBehaviour:
   m_Name: Light Off State
   m_EditorClassIdentifier: 
   Ports:
-  - Name: Input
-    Direction: 0
-    CanBeRemoved: 0
-    guid: 15d19c5d-5610-49de-b9ad-883af302beee
-    Connections:
-    - Node: {fileID: -6493491684333143567}
-      port:
-        Name: Next
-        Direction: 1
-        CanBeRemoved: 0
-        guid: 7bf18449-4e5e-4395-bdba-2bc148a6b4fa
-        Connections:
-        - Node: {fileID: -4925268460646235487}
-          port:
-            Name: Input
-            Direction: 0
-            CanBeRemoved: 0
-            guid: 15d19c5d-5610-49de-b9ad-883af302beee
-            Connections:
-            - Node: {fileID: -6493491684333143567}
-              port:
-                Name: Next
-                Direction: 1
-                CanBeRemoved: 0
-                guid: 7bf18449-4e5e-4395-bdba-2bc148a6b4fa
-                Connections:
-                - Node: {fileID: -4925268460646235487}
-                  port:
-                    Name: Input
-                    Direction: 0
-                    CanBeRemoved: 0
-                    guid: 15d19c5d-5610-49de-b9ad-883af302beee
-                    Connections:
-                    - Node: {fileID: -6493491684333143567}
-                      port:
-                        Name: Next
-                        Direction: 1
-                        CanBeRemoved: 0
-                        guid: 7bf18449-4e5e-4395-bdba-2bc148a6b4fa
-                      guid: 7bf18449-4e5e-4395-bdba-2bc148a6b4fa
-                    - Node: {fileID: 6839267063973310425}
-                      port:
-                        Name: Turn Off
-                        Direction: 1
-                        CanBeRemoved: 1
-                        guid: d6bf9801-f857-4537-9281-c413ff35010b
-                      guid: d6bf9801-f857-4537-9281-c413ff35010b
-                  guid: 15d19c5d-5610-49de-b9ad-883af302beee
-              guid: 7bf18449-4e5e-4395-bdba-2bc148a6b4fa
-            - Node: {fileID: 6839267063973310425}
-              port:
-                Name: Turn Off
-                Direction: 1
-                CanBeRemoved: 1
-                guid: d6bf9801-f857-4537-9281-c413ff35010b
-                Connections:
-                - Node: {fileID: -4925268460646235487}
-                  port:
-                    Name: Input
-                    Direction: 0
-                    CanBeRemoved: 0
-                    guid: 15d19c5d-5610-49de-b9ad-883af302beee
-                    Connections:
-                    - Node: {fileID: -6493491684333143567}
-                      port:
-                        Name: Next
-                        Direction: 1
-                        CanBeRemoved: 0
-                        guid: 7bf18449-4e5e-4395-bdba-2bc148a6b4fa
-                      guid: 7bf18449-4e5e-4395-bdba-2bc148a6b4fa
-                    - Node: {fileID: 6839267063973310425}
-                      port:
-                        Name: Turn Off
-                        Direction: 1
-                        CanBeRemoved: 1
-                        guid: d6bf9801-f857-4537-9281-c413ff35010b
-                      guid: d6bf9801-f857-4537-9281-c413ff35010b
-                  guid: 15d19c5d-5610-49de-b9ad-883af302beee
-              guid: d6bf9801-f857-4537-9281-c413ff35010b
-          guid: 15d19c5d-5610-49de-b9ad-883af302beee
-      guid: 7bf18449-4e5e-4395-bdba-2bc148a6b4fa
-    - Node: {fileID: 6839267063973310425}
-      port:
-        Name: Turn Off
-        Direction: 1
-        CanBeRemoved: 1
-        guid: d6bf9801-f857-4537-9281-c413ff35010b
-        Connections:
-        - Node: {fileID: -4925268460646235487}
-          port:
-            Name: Input
-            Direction: 0
-            CanBeRemoved: 0
-            guid: 15d19c5d-5610-49de-b9ad-883af302beee
-            Connections:
-            - Node: {fileID: -6493491684333143567}
-              port:
-                Name: Next
-                Direction: 1
-                CanBeRemoved: 0
-                guid: 7bf18449-4e5e-4395-bdba-2bc148a6b4fa
-                Connections:
-                - Node: {fileID: -4925268460646235487}
-                  port:
-                    Name: Input
-                    Direction: 0
-                    CanBeRemoved: 0
-                    guid: 15d19c5d-5610-49de-b9ad-883af302beee
-                    Connections:
-                    - Node: {fileID: -6493491684333143567}
-                      port:
-                        Name: Next
-                        Direction: 1
-                        CanBeRemoved: 0
-                        guid: 7bf18449-4e5e-4395-bdba-2bc148a6b4fa
-                      guid: 7bf18449-4e5e-4395-bdba-2bc148a6b4fa
-                    - Node: {fileID: 6839267063973310425}
-                      port:
-                        Name: Turn Off
-                        Direction: 1
-                        CanBeRemoved: 1
-                        guid: d6bf9801-f857-4537-9281-c413ff35010b
-                      guid: d6bf9801-f857-4537-9281-c413ff35010b
-                  guid: 15d19c5d-5610-49de-b9ad-883af302beee
-              guid: 7bf18449-4e5e-4395-bdba-2bc148a6b4fa
-            - Node: {fileID: 6839267063973310425}
-              port:
-                Name: Turn Off
-                Direction: 1
-                CanBeRemoved: 1
-                guid: d6bf9801-f857-4537-9281-c413ff35010b
-                Connections:
-                - Node: {fileID: -4925268460646235487}
-                  port:
-                    Name: Input
-                    Direction: 0
-                    CanBeRemoved: 0
-                    guid: 15d19c5d-5610-49de-b9ad-883af302beee
-                    Connections:
-                    - Node: {fileID: -6493491684333143567}
-                      port:
-                        Name: Next
-                        Direction: 1
-                        CanBeRemoved: 0
-                        guid: 7bf18449-4e5e-4395-bdba-2bc148a6b4fa
-                      guid: 7bf18449-4e5e-4395-bdba-2bc148a6b4fa
-                    - Node: {fileID: 6839267063973310425}
-                      port:
-                        Name: Turn Off
-                        Direction: 1
-                        CanBeRemoved: 1
-                        guid: d6bf9801-f857-4537-9281-c413ff35010b
-                      guid: d6bf9801-f857-4537-9281-c413ff35010b
-                  guid: 15d19c5d-5610-49de-b9ad-883af302beee
-              guid: d6bf9801-f857-4537-9281-c413ff35010b
-          guid: 15d19c5d-5610-49de-b9ad-883af302beee
-      guid: d6bf9801-f857-4537-9281-c413ff35010b
-  - Name: Turn On
-    Direction: 1
-    CanBeRemoved: 1
-    guid: 9d763880-cef7-43d7-9518-13f16ab4b044
-    Connections:
-    - Node: {fileID: 6839267063973310425}
-      port:
+  - id: 0
+  - id: 1
+  editor_ActiveNode: 0
+  position: {x: 503, y: 127}
+  fsm: {fileID: 0}
+  references:
+    version: 1
+    00000000:
+      type: {class: VisualGraphPort, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
+      data:
         Name: Input
         Direction: 0
         CanBeRemoved: 0
-        guid: a47b08c3-db88-4485-9642-6335c7be4098
+        guid: d7786b39-2086-4fb8-b529-2665c87f92e4
         Connections:
-        - Node: {fileID: -4925268460646235487}
-          port:
-            Name: Turn On
-            Direction: 1
-            CanBeRemoved: 1
-            guid: 9d763880-cef7-43d7-9518-13f16ab4b044
-            Connections:
-            - Node: {fileID: 6839267063973310425}
-              port:
-                Name: Input
-                Direction: 0
-                CanBeRemoved: 0
-                guid: a47b08c3-db88-4485-9642-6335c7be4098
-                Connections:
-                - Node: {fileID: -4925268460646235487}
-                  port:
-                    Name: Turn On
-                    Direction: 1
-                    CanBeRemoved: 1
-                    guid: 9d763880-cef7-43d7-9518-13f16ab4b044
-                    Connections:
-                    - Node: {fileID: 6839267063973310425}
-                      port:
-                        Name: Input
-                        Direction: 0
-                        CanBeRemoved: 0
-                        guid: a47b08c3-db88-4485-9642-6335c7be4098
-                      guid: a47b08c3-db88-4485-9642-6335c7be4098
-                  guid: 9d763880-cef7-43d7-9518-13f16ab4b044
-              guid: a47b08c3-db88-4485-9642-6335c7be4098
-          guid: 9d763880-cef7-43d7-9518-13f16ab4b044
-      guid: a47b08c3-db88-4485-9642-6335c7be4098
-  editor_ActiveNode: 1
-  position: {x: 500, y: 122}
-  fsm: {fileID: 0}
---- !u!114 &-746401529585981396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b45a8f6e55846134ca49edb9fe1326b6, type: 3}
-  m_Name: GameObjectBlackboardProperty
-  m_EditorClassIdentifier: 
-  overrideProperty: 0
-  guid: 770bbe8b-1b9e-4d94-9db4-da8a03f93309
-  Name: Light
-  abstractData: {fileID: 0}
+        - id: 2
+        - id: 3
+    00000001:
+      type: {class: VisualGraphPort, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
+      data:
+        Name: Turn On
+        Direction: 1
+        CanBeRemoved: 1
+        guid: 2a6f2407-e67b-4373-97b0-02f0d396fc6f
+        Connections:
+        - id: 4
+    00000002:
+      type: {class: VisualGraphPort/VisualGraphPortConnection, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
+      data:
+        Node: {fileID: -8733673725528234871}
+        port:
+          id: 5
+        guid: fab79a67-8103-4fb8-a683-3f034f38d68c
+    00000003:
+      type: {class: VisualGraphPort/VisualGraphPortConnection, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
+      data:
+        Node: {fileID: 8608338491921396834}
+        port:
+          id: 6
+        guid: 17e62944-ca5f-44d8-afb5-a653af04b78b
+    00000004:
+      type: {class: VisualGraphPort/VisualGraphPortConnection, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
+      data:
+        Node: {fileID: 8608338491921396834}
+        port:
+          id: 7
+        guid: 301307ff-a6f2-4415-b8b8-9dd634bcfdd2
+    00000005:
+      type: {class: VisualGraphPort, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
+      data:
+        Name: Next
+        Direction: 1
+        CanBeRemoved: 0
+        guid: fab79a67-8103-4fb8-a683-3f034f38d68c
+        Connections:
+        - id: 8
+    00000006:
+      type: {class: VisualGraphPort, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
+      data:
+        Name: Turn Off
+        Direction: 1
+        CanBeRemoved: 1
+        guid: 17e62944-ca5f-44d8-afb5-a653af04b78b
+        Connections:
+        - id: 9
+    00000007:
+      type: {class: VisualGraphPort, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
+      data:
+        Name: Input
+        Direction: 0
+        CanBeRemoved: 0
+        guid: 301307ff-a6f2-4415-b8b8-9dd634bcfdd2
+        Connections:
+        - id: 10
+    00000008:
+      type: {class: VisualGraphPort/VisualGraphPortConnection, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
+      data:
+        Node: {fileID: -3628775139019133522}
+        port:
+          id: 0
+        guid: d7786b39-2086-4fb8-b529-2665c87f92e4
+    00000009:
+      type: {class: VisualGraphPort/VisualGraphPortConnection, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
+      data:
+        Node: {fileID: -3628775139019133522}
+        port:
+          id: 0
+        guid: d7786b39-2086-4fb8-b529-2665c87f92e4
+    0000000A:
+      type: {class: VisualGraphPort/VisualGraphPortConnection, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
+      data:
+        Node: {fileID: -3628775139019133522}
+        port:
+          id: 1
+        guid: 2a6f2407-e67b-4373-97b0-02f0d396fc6f
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -381,17 +210,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cac613c2c69d574a8f136683f8f0de0, type: 3}
   m_Name: Light  FSM Graph
   m_EditorClassIdentifier: 
-  StartingNode: {fileID: -6493491684333143567}
+  StartingNode: {fileID: -8733673725528234871}
   Nodes:
-  - {fileID: -6493491684333143567}
-  - {fileID: -4925268460646235487}
-  - {fileID: 6839267063973310425}
+  - {fileID: -8733673725528234871}
+  - {fileID: -3628775139019133522}
+  - {fileID: 8608338491921396834}
   CommentBlocks: []
   BlackboardProperties:
-  - {fileID: -8639677850109524451}
-  - {fileID: -746401529585981396}
+  - {fileID: -7872794448248944276}
+  - {fileID: 9031285051403645783}
   currentState: {fileID: 0}
---- !u!114 &6839267063973310425
+--- !u!114 &8608338491921396834
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -404,155 +233,114 @@ MonoBehaviour:
   m_Name: Light On State
   m_EditorClassIdentifier: 
   Ports:
-  - Name: Input
-    Direction: 0
-    CanBeRemoved: 0
-    guid: a47b08c3-db88-4485-9642-6335c7be4098
-    Connections:
-    - Node: {fileID: -4925268460646235487}
-      port:
-        Name: Turn On
-        Direction: 1
-        CanBeRemoved: 1
-        guid: 9d763880-cef7-43d7-9518-13f16ab4b044
-        Connections:
-        - Node: {fileID: 6839267063973310425}
-          port:
-            Name: Input
-            Direction: 0
-            CanBeRemoved: 0
-            guid: a47b08c3-db88-4485-9642-6335c7be4098
-            Connections:
-            - Node: {fileID: -4925268460646235487}
-              port:
-                Name: Turn On
-                Direction: 1
-                CanBeRemoved: 1
-                guid: 9d763880-cef7-43d7-9518-13f16ab4b044
-                Connections:
-                - Node: {fileID: 6839267063973310425}
-                  port:
-                    Name: Input
-                    Direction: 0
-                    CanBeRemoved: 0
-                    guid: a47b08c3-db88-4485-9642-6335c7be4098
-                    Connections:
-                    - Node: {fileID: -4925268460646235487}
-                      port:
-                        Name: Turn On
-                        Direction: 1
-                        CanBeRemoved: 1
-                        guid: 9d763880-cef7-43d7-9518-13f16ab4b044
-                      guid: 9d763880-cef7-43d7-9518-13f16ab4b044
-                  guid: a47b08c3-db88-4485-9642-6335c7be4098
-              guid: 9d763880-cef7-43d7-9518-13f16ab4b044
-          guid: a47b08c3-db88-4485-9642-6335c7be4098
-      guid: 9d763880-cef7-43d7-9518-13f16ab4b044
-  - Name: Turn Off
-    Direction: 1
-    CanBeRemoved: 1
-    guid: d6bf9801-f857-4537-9281-c413ff35010b
-    Connections:
-    - Node: {fileID: -4925268460646235487}
-      port:
+  - id: 0
+  - id: 1
+  editor_ActiveNode: 0
+  position: {x: 516, y: 321}
+  fsm: {fileID: 0}
+  references:
+    version: 1
+    00000000:
+      type: {class: VisualGraphPort, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
+      data:
         Name: Input
         Direction: 0
         CanBeRemoved: 0
-        guid: 15d19c5d-5610-49de-b9ad-883af302beee
+        guid: 301307ff-a6f2-4415-b8b8-9dd634bcfdd2
         Connections:
-        - Node: {fileID: -6493491684333143567}
-          port:
-            Name: Next
-            Direction: 1
-            CanBeRemoved: 0
-            guid: 7bf18449-4e5e-4395-bdba-2bc148a6b4fa
-            Connections:
-            - Node: {fileID: -4925268460646235487}
-              port:
-                Name: Input
-                Direction: 0
-                CanBeRemoved: 0
-                guid: 15d19c5d-5610-49de-b9ad-883af302beee
-                Connections:
-                - Node: {fileID: -6493491684333143567}
-                  port:
-                    Name: Next
-                    Direction: 1
-                    CanBeRemoved: 0
-                    guid: 7bf18449-4e5e-4395-bdba-2bc148a6b4fa
-                    Connections:
-                    - Node: {fileID: -4925268460646235487}
-                      port:
-                        Name: Input
-                        Direction: 0
-                        CanBeRemoved: 0
-                        guid: 15d19c5d-5610-49de-b9ad-883af302beee
-                      guid: 15d19c5d-5610-49de-b9ad-883af302beee
-                  guid: 7bf18449-4e5e-4395-bdba-2bc148a6b4fa
-                - Node: {fileID: 6839267063973310425}
-                  port:
-                    Name: Turn Off
-                    Direction: 1
-                    CanBeRemoved: 1
-                    guid: d6bf9801-f857-4537-9281-c413ff35010b
-                    Connections:
-                    - Node: {fileID: -4925268460646235487}
-                      port:
-                        Name: Input
-                        Direction: 0
-                        CanBeRemoved: 0
-                        guid: 15d19c5d-5610-49de-b9ad-883af302beee
-                      guid: 15d19c5d-5610-49de-b9ad-883af302beee
-                  guid: d6bf9801-f857-4537-9281-c413ff35010b
-              guid: 15d19c5d-5610-49de-b9ad-883af302beee
-          guid: 7bf18449-4e5e-4395-bdba-2bc148a6b4fa
-        - Node: {fileID: 6839267063973310425}
-          port:
-            Name: Turn Off
-            Direction: 1
-            CanBeRemoved: 1
-            guid: d6bf9801-f857-4537-9281-c413ff35010b
-            Connections:
-            - Node: {fileID: -4925268460646235487}
-              port:
-                Name: Input
-                Direction: 0
-                CanBeRemoved: 0
-                guid: 15d19c5d-5610-49de-b9ad-883af302beee
-                Connections:
-                - Node: {fileID: -6493491684333143567}
-                  port:
-                    Name: Next
-                    Direction: 1
-                    CanBeRemoved: 0
-                    guid: 7bf18449-4e5e-4395-bdba-2bc148a6b4fa
-                    Connections:
-                    - Node: {fileID: -4925268460646235487}
-                      port:
-                        Name: Input
-                        Direction: 0
-                        CanBeRemoved: 0
-                        guid: 15d19c5d-5610-49de-b9ad-883af302beee
-                      guid: 15d19c5d-5610-49de-b9ad-883af302beee
-                  guid: 7bf18449-4e5e-4395-bdba-2bc148a6b4fa
-                - Node: {fileID: 6839267063973310425}
-                  port:
-                    Name: Turn Off
-                    Direction: 1
-                    CanBeRemoved: 1
-                    guid: d6bf9801-f857-4537-9281-c413ff35010b
-                    Connections:
-                    - Node: {fileID: -4925268460646235487}
-                      port:
-                        Name: Input
-                        Direction: 0
-                        CanBeRemoved: 0
-                        guid: 15d19c5d-5610-49de-b9ad-883af302beee
-                      guid: 15d19c5d-5610-49de-b9ad-883af302beee
-                  guid: d6bf9801-f857-4537-9281-c413ff35010b
-              guid: 15d19c5d-5610-49de-b9ad-883af302beee
-          guid: d6bf9801-f857-4537-9281-c413ff35010b
-      guid: 15d19c5d-5610-49de-b9ad-883af302beee
-  editor_ActiveNode: 0
-  position: {x: 483, y: 333}
-  fsm: {fileID: 0}
+        - id: 2
+    00000001:
+      type: {class: VisualGraphPort, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
+      data:
+        Name: Turn Off
+        Direction: 1
+        CanBeRemoved: 1
+        guid: 17e62944-ca5f-44d8-afb5-a653af04b78b
+        Connections:
+        - id: 3
+    00000002:
+      type: {class: VisualGraphPort/VisualGraphPortConnection, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
+      data:
+        Node: {fileID: -3628775139019133522}
+        port:
+          id: 4
+        guid: 2a6f2407-e67b-4373-97b0-02f0d396fc6f
+    00000003:
+      type: {class: VisualGraphPort/VisualGraphPortConnection, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
+      data:
+        Node: {fileID: -3628775139019133522}
+        port:
+          id: 5
+        guid: d7786b39-2086-4fb8-b529-2665c87f92e4
+    00000004:
+      type: {class: VisualGraphPort, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
+      data:
+        Name: Turn On
+        Direction: 1
+        CanBeRemoved: 1
+        guid: 2a6f2407-e67b-4373-97b0-02f0d396fc6f
+        Connections:
+        - id: 6
+    00000005:
+      type: {class: VisualGraphPort, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
+      data:
+        Name: Input
+        Direction: 0
+        CanBeRemoved: 0
+        guid: d7786b39-2086-4fb8-b529-2665c87f92e4
+        Connections:
+        - id: 7
+        - id: 8
+    00000006:
+      type: {class: VisualGraphPort/VisualGraphPortConnection, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
+      data:
+        Node: {fileID: 8608338491921396834}
+        port:
+          id: 0
+        guid: 301307ff-a6f2-4415-b8b8-9dd634bcfdd2
+    00000007:
+      type: {class: VisualGraphPort/VisualGraphPortConnection, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
+      data:
+        Node: {fileID: -8733673725528234871}
+        port:
+          id: 9
+        guid: fab79a67-8103-4fb8-a683-3f034f38d68c
+    00000008:
+      type: {class: VisualGraphPort/VisualGraphPortConnection, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
+      data:
+        Node: {fileID: 8608338491921396834}
+        port:
+          id: 1
+        guid: 17e62944-ca5f-44d8-afb5-a653af04b78b
+    00000009:
+      type: {class: VisualGraphPort, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
+      data:
+        Name: Next
+        Direction: 1
+        CanBeRemoved: 0
+        guid: fab79a67-8103-4fb8-a683-3f034f38d68c
+        Connections:
+        - id: 10
+    0000000A:
+      type: {class: VisualGraphPort/VisualGraphPortConnection, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
+      data:
+        Node: {fileID: -3628775139019133522}
+        port:
+          id: 5
+        guid: d7786b39-2086-4fb8-b529-2665c87f92e4
+--- !u!114 &9031285051403645783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b45a8f6e55846134ca49edb9fe1326b6, type: 3}
+  m_Name: GameObjectBlackboardProperty
+  m_EditorClassIdentifier: 
+  overrideProperty: 0
+  guid: 8b4760f8-509a-4ee7-bf48-93a10b34ec2e
+  Name: Light
+  abstractData: {fileID: 0}

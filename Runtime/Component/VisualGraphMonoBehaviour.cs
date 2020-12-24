@@ -29,7 +29,7 @@ namespace VisualGraphRuntime
 		/// <summary>
 		/// Store a reference to the type of graph we want to use
 		/// </summary>
-		[SerializeField] [HideInInspector] public T graph;
+		[SerializeField] /*[HideInInspector]*/ public T graph;
 
 		/// <summary>
 		/// To be used at runtime and un editor during play
