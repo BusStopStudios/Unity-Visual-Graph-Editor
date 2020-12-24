@@ -1,0 +1,10 @@
+﻿/* Add a round border to all nodes */
+.VisualGraphNode {
+    border-radius: 10;
+    background-color: rgba(196, 196, 196, 1);
+}
+
+/* Change the background color of the title section */
+#title {
+    background-color: rgba(0, 0, 0, 1);
+}

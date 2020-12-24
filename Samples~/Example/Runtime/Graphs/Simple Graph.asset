@@ -1,0 +1,291 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8562352583511155668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c22eacb0334362d4e89994e4a1a0e5ed, type: 3}
+  m_Name: BoolBlackboardProperty
+  m_EditorClassIdentifier: 
+  overrideProperty: 0
+  guid: 02917a12-68c4-495f-975e-0e8ab1839c64
+  Name: bool
+  abstractData: 0
+--- !u!114 &-2280025647425388683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f410bd6e8d523a47b8745e559931533, type: 3}
+  m_Name: Example Node
+  m_EditorClassIdentifier: 
+  Ports:
+  - Name: Input
+    Direction: 0
+    CanBeRemoved: 0
+    guid: c4b89bfa-32c1-42c4-8c5a-a7a5a6358e40
+    Connections:
+    - Node: {fileID: -294517908142636616}
+      port:
+        Name: Exit
+        Direction: 1
+        CanBeRemoved: 1
+        guid: d3a278ad-0c82-4ee9-bf1c-189e82ab388f
+        Connections:
+        - Node: {fileID: -2280025647425388683}
+          port:
+            Name: Input
+            Direction: 0
+            CanBeRemoved: 0
+            guid: c4b89bfa-32c1-42c4-8c5a-a7a5a6358e40
+            Connections:
+            - Node: {fileID: -294517908142636616}
+              port:
+                Name: Exit
+                Direction: 1
+                CanBeRemoved: 1
+                guid: d3a278ad-0c82-4ee9-bf1c-189e82ab388f
+                Connections:
+                - Node: {fileID: -2280025647425388683}
+                  port:
+                    Name: Input
+                    Direction: 0
+                    CanBeRemoved: 0
+                    guid: c4b89bfa-32c1-42c4-8c5a-a7a5a6358e40
+                    Connections:
+                    - Node: {fileID: -294517908142636616}
+                      port:
+                        Name: Exit
+                        Direction: 1
+                        CanBeRemoved: 1
+                        guid: d3a278ad-0c82-4ee9-bf1c-189e82ab388f
+                      guid: d3a278ad-0c82-4ee9-bf1c-189e82ab388f
+                  guid: c4b89bfa-32c1-42c4-8c5a-a7a5a6358e40
+              guid: d3a278ad-0c82-4ee9-bf1c-189e82ab388f
+          guid: c4b89bfa-32c1-42c4-8c5a-a7a5a6358e40
+      guid: d3a278ad-0c82-4ee9-bf1c-189e82ab388f
+  editor_ActiveNode: 0
+  position: {x: 790, y: 285}
+  ExampleBool: 0
+  ExampleInt: 0
+  ExampleString: 
+  ExampleFloat: 0
+  ExampleVector: {x: 0, y: 0, z: 0}
+--- !u!114 &-294517908142636616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f410bd6e8d523a47b8745e559931533, type: 3}
+  m_Name: Example Node
+  m_EditorClassIdentifier: 
+  Ports:
+  - Name: Input
+    Direction: 0
+    CanBeRemoved: 0
+    guid: f1cac79c-6358-4d11-8166-d05b08641230
+    Connections:
+    - Node: {fileID: 9002405451287389809}
+      port:
+        Name: Next
+        Direction: 1
+        CanBeRemoved: 0
+        guid: f140166a-f33a-44be-a75c-3832ae720a8a
+        Connections:
+        - Node: {fileID: -294517908142636616}
+          port:
+            Name: Input
+            Direction: 0
+            CanBeRemoved: 0
+            guid: f1cac79c-6358-4d11-8166-d05b08641230
+            Connections:
+            - Node: {fileID: 9002405451287389809}
+              port:
+                Name: Next
+                Direction: 1
+                CanBeRemoved: 0
+                guid: f140166a-f33a-44be-a75c-3832ae720a8a
+                Connections:
+                - Node: {fileID: -294517908142636616}
+                  port:
+                    Name: Input
+                    Direction: 0
+                    CanBeRemoved: 0
+                    guid: f1cac79c-6358-4d11-8166-d05b08641230
+                    Connections:
+                    - Node: {fileID: 9002405451287389809}
+                      port:
+                        Name: Next
+                        Direction: 1
+                        CanBeRemoved: 0
+                        guid: f140166a-f33a-44be-a75c-3832ae720a8a
+                      guid: f140166a-f33a-44be-a75c-3832ae720a8a
+                  guid: f1cac79c-6358-4d11-8166-d05b08641230
+              guid: f140166a-f33a-44be-a75c-3832ae720a8a
+          guid: f1cac79c-6358-4d11-8166-d05b08641230
+      guid: f140166a-f33a-44be-a75c-3832ae720a8a
+  - Name: Exit
+    Direction: 1
+    CanBeRemoved: 1
+    guid: d3a278ad-0c82-4ee9-bf1c-189e82ab388f
+    Connections:
+    - Node: {fileID: -2280025647425388683}
+      port:
+        Name: Input
+        Direction: 0
+        CanBeRemoved: 0
+        guid: c4b89bfa-32c1-42c4-8c5a-a7a5a6358e40
+        Connections:
+        - Node: {fileID: -294517908142636616}
+          port:
+            Name: Exit
+            Direction: 1
+            CanBeRemoved: 1
+            guid: d3a278ad-0c82-4ee9-bf1c-189e82ab388f
+            Connections:
+            - Node: {fileID: -2280025647425388683}
+              port:
+                Name: Input
+                Direction: 0
+                CanBeRemoved: 0
+                guid: c4b89bfa-32c1-42c4-8c5a-a7a5a6358e40
+                Connections:
+                - Node: {fileID: -294517908142636616}
+                  port:
+                    Name: Exit
+                    Direction: 1
+                    CanBeRemoved: 1
+                    guid: d3a278ad-0c82-4ee9-bf1c-189e82ab388f
+                    Connections:
+                    - Node: {fileID: -2280025647425388683}
+                      port:
+                        Name: Input
+                        Direction: 0
+                        CanBeRemoved: 0
+                        guid: c4b89bfa-32c1-42c4-8c5a-a7a5a6358e40
+                      guid: c4b89bfa-32c1-42c4-8c5a-a7a5a6358e40
+                  guid: d3a278ad-0c82-4ee9-bf1c-189e82ab388f
+              guid: c4b89bfa-32c1-42c4-8c5a-a7a5a6358e40
+          guid: d3a278ad-0c82-4ee9-bf1c-189e82ab388f
+      guid: c4b89bfa-32c1-42c4-8c5a-a7a5a6358e40
+  editor_ActiveNode: 0
+  position: {x: 455, y: 141}
+  ExampleBool: 0
+  ExampleInt: 0
+  ExampleString: 
+  ExampleFloat: 0
+  ExampleVector: {x: 0, y: 0, z: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6fde670e7119d9429e3117e89788fe2, type: 3}
+  m_Name: Simple Graph
+  m_EditorClassIdentifier: 
+  StartingNode: {fileID: 9002405451287389809}
+  Nodes:
+  - {fileID: 9002405451287389809}
+  - {fileID: -294517908142636616}
+  - {fileID: -2280025647425388683}
+  CommentBlocks: []
+  BlackboardProperties:
+  - {fileID: -8562352583511155668}
+  - {fileID: 8955389349547550801}
+--- !u!114 &8955389349547550801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e58d00d341921a4cb6b135fe7d5bf62, type: 3}
+  m_Name: RectBlackboardProperty
+  m_EditorClassIdentifier: 
+  overrideProperty: 0
+  guid: 4d4ecc58-c2e8-4a79-9dab-3930b102c347
+  Name: Rect
+  abstractData:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+--- !u!114 &9002405451287389809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed165b12bb8f4c948932f8ee28821eca, type: 3}
+  m_Name: Start
+  m_EditorClassIdentifier: 
+  Ports:
+  - Name: Next
+    Direction: 1
+    CanBeRemoved: 0
+    guid: f140166a-f33a-44be-a75c-3832ae720a8a
+    Connections:
+    - Node: {fileID: -294517908142636616}
+      port:
+        Name: Input
+        Direction: 0
+        CanBeRemoved: 0
+        guid: f1cac79c-6358-4d11-8166-d05b08641230
+        Connections:
+        - Node: {fileID: 9002405451287389809}
+          port:
+            Name: Next
+            Direction: 1
+            CanBeRemoved: 0
+            guid: f140166a-f33a-44be-a75c-3832ae720a8a
+            Connections:
+            - Node: {fileID: -294517908142636616}
+              port:
+                Name: Input
+                Direction: 0
+                CanBeRemoved: 0
+                guid: f1cac79c-6358-4d11-8166-d05b08641230
+                Connections:
+                - Node: {fileID: 9002405451287389809}
+                  port:
+                    Name: Next
+                    Direction: 1
+                    CanBeRemoved: 0
+                    guid: f140166a-f33a-44be-a75c-3832ae720a8a
+                    Connections:
+                    - Node: {fileID: -294517908142636616}
+                      port:
+                        Name: Input
+                        Direction: 0
+                        CanBeRemoved: 0
+                        guid: f1cac79c-6358-4d11-8166-d05b08641230
+                      guid: f1cac79c-6358-4d11-8166-d05b08641230
+                  guid: f140166a-f33a-44be-a75c-3832ae720a8a
+              guid: f1cac79c-6358-4d11-8166-d05b08641230
+          guid: f140166a-f33a-44be-a75c-3832ae720a8a
+      guid: f1cac79c-6358-4d11-8166-d05b08641230
+  editor_ActiveNode: 0
+  position: {x: 270, y: 30}

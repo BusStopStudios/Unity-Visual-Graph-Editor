@@ -1,0 +1,10 @@
+﻿#blackboardLabel {
+    border-top-width: 10;
+    border-bottom-width: 5;
+}
+
+#blackboardProperty {
+    border-color: rgba(0, 0, 0, 1);
+    border-top-width: 1;
+    padding: 3;
+}

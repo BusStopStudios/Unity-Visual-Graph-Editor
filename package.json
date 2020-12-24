@@ -1,0 +1,30 @@
+{
+    "name": "busstopstudios.unity.visual-graph",
+    "version": "0.0.1",
+    "displayName": "Visual Graph",
+    "description": "Extension to Unity's GraphView. You can use this to extend Unitys Experimental GraphView to create Graphs that have an entry point to custom nodes.",
+    "unity": "2020.2",
+    "unityRelease": "1f1",
+    "dependencies": {
+        "com.unity.modules.ui": "1.0.0"
+    },
+    "samples": [
+        {
+            "displayName": "Example",
+            "description": "Basic example of a graph",
+            "path": "Samples~/Example"
+        },
+        {
+            "displayName": "FSM",
+            "description": "FSM Example that will turn a ligt on and off with blackboard properties",
+            "path": "Samples~/FSM"
+        }
+    ],
+    "author": "Bus Stop Stuios",
+    "license": "MIT",
+    "repository": {
+        "url": "https://github.com/BusStopStudios/unity.visual-graph.git",
+        "type": "git"
+    },
+    "type": "tool"
+}

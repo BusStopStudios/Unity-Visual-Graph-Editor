@@ -1,0 +1,21 @@
+.VisualGraphNode {
+    border-radius: 10;
+}
+
+.VisualGraphNodeSelected {
+    border-radius: 10;
+    background-color: rgba(128, 128, 196, 1);
+}
+
+#title {
+    background-color: rgba(64, 64, 64, 1);
+}
+
+#contents {
+    background-color: rgba(64, 64, 64, 1);
+}
+
+.node_data {
+    background-color: rgba(64, 64, 64, 1);
+    border-width: 5;
+}
