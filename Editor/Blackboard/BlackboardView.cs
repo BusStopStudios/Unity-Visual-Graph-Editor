@@ -48,6 +48,10 @@ namespace VisualGraphEditor
                 }
             }
         }
+        public void ClearBlackboard()
+        {
+            blackboard.Clear();
+        }
 
         public void SetVisualGraph(VisualGraph visualGraph)
         {
@@ -56,7 +60,7 @@ namespace VisualGraphEditor
             foreach (var property in visualGraph.BlackboardProperties)
             {
                 if (blackboardFieldTypes.ContainsKey(property.GetType()))
-				{
+                {
                     AddBlackboardProperty(blackboardFieldTypes[property.GetType()], property);
                 }
             }
@@ -64,11 +68,11 @@ namespace VisualGraphEditor
 
         public void EditTextRequested(Blackboard blackboard, VisualElement visualElement, string newText)
         {
-			var field = (BlackboardField)visualElement;
-			var property = (AbstractBlackboardProperty)field.userData;
+            var field = (BlackboardField)visualElement;
+            var property = (AbstractBlackboardProperty)field.userData;
 
             if (!string.IsNullOrEmpty(newText) && newText != property.Name)
-			{
+            {
                 Undo.RecordObject(visualGraph, "Edit Blackboard Text");
 
                 int count = 0;
@@ -80,7 +84,7 @@ namespace VisualGraphEditor
                 if (count > 0) propertyName += $"({count})";
 
                 property.Name = propertyName;
-				field.text = property.Name;
+                field.text = property.Name;
 
                 EditorUtility.SetDirty(visualGraph);
             }
@@ -130,11 +134,11 @@ namespace VisualGraphEditor
             AddBlackboardProperty(type, property);
 
             EditorUtility.SetDirty(visualGraph);
-		    AssetDatabase.SaveAssets();
+            AssetDatabase.SaveAssets();
         }
 
         void OnRemoveBlackboardProperty(BlackboardFieldView field)
-		{
+        {
             Undo.RecordObject(visualGraph, "Remove Blackboard Property");
 
             visualGraph.BlackboardProperties.Remove(field.property);

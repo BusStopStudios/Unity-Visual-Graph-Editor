@@ -1,96 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-3463001079661106225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f410bd6e8d523a47b8745e559931533, type: 3}
-  m_Name: Example Node
-  m_EditorClassIdentifier: 
-  Ports:
-  - id: 0
-  editor_ActiveNode: 0
-  position: {x: 521, y: 155}
-  ExampleBool: 0
-  ExampleInt: 0
-  ExampleString: 
-  ExampleFloat: 0
-  ExampleVector: {x: 0, y: 0, z: 0}
-  references:
-    version: 1
-    00000000:
-      type: {class: VisualGraphPort, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
-      data:
-        Name: Input
-        Direction: 0
-        CanBeRemoved: 0
-        guid: e4aa9f7b-384a-48ca-86c8-19e1af0d2b6e
-        Connections:
-        - id: 1
-    00000001:
-      type: {class: VisualGraphPort/VisualGraphPortConnection, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
-      data:
-        Node: {fileID: 2599370616462985039}
-        port:
-          id: 2
-        guid: fc23577b-9761-4f82-bc63-83d6821256f5
-    00000002:
-      type: {class: VisualGraphPort, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
-      data:
-        Name: Next
-        Direction: 1
-        CanBeRemoved: 0
-        guid: fc23577b-9761-4f82-bc63-83d6821256f5
-        Connections:
-        - id: 3
-    00000003:
-      type: {class: VisualGraphPort/VisualGraphPortConnection, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
-      data:
-        Node: {fileID: -3463001079661106225}
-        port:
-          id: 0
-        guid: e4aa9f7b-384a-48ca-86c8-19e1af0d2b6e
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6fde670e7119d9429e3117e89788fe2, type: 3}
-  m_Name: Simple Graph
-  m_EditorClassIdentifier: 
-  StartingNode: {fileID: 2599370616462985039}
-  Nodes:
-  - {fileID: 2599370616462985039}
-  - {fileID: -3463001079661106225}
-  CommentBlocks: []
-  BlackboardProperties:
-  - {fileID: 684731412191981843}
---- !u!114 &684731412191981843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c22eacb0334362d4e89994e4a1a0e5ed, type: 3}
-  m_Name: BoolBlackboardProperty
-  m_EditorClassIdentifier: 
-  overrideProperty: 0
-  guid: cdae6335-a86a-432b-8410-f78edb3f7500
-  Name: bool
-  abstractData: 0
---- !u!114 &2599370616462985039
+--- !u!114 &-4244378202077005130
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,40 +13,59 @@ MonoBehaviour:
   m_Name: Start
   m_EditorClassIdentifier: 
   Ports:
-  - id: 0
+  - Name: Next
+    Direction: 1
+    CanBeRemoved: 0
+    guid: 76c3ee26-fdb5-48e7-9dc4-2f294e04cb27
+    Connections:
+    - node_guid: 4d78d818-5c7d-4a73-b4c8-197c51af2a40
+      port_guid: af71a15e-4711-4c6e-a75f-c7f4bd67fd4b
+  internal_guid: 31a99217-b5cb-4fb2-822e-0b4361c0d060
   editor_ActiveNode: 0
   position: {x: 270, y: 30}
-  references:
-    version: 1
-    00000000:
-      type: {class: VisualGraphPort, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
-      data:
-        Name: Next
-        Direction: 1
-        CanBeRemoved: 0
-        guid: fc23577b-9761-4f82-bc63-83d6821256f5
-        Connections:
-        - id: 1
-    00000001:
-      type: {class: VisualGraphPort/VisualGraphPortConnection, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
-      data:
-        Node: {fileID: -3463001079661106225}
-        port:
-          id: 2
-        guid: e4aa9f7b-384a-48ca-86c8-19e1af0d2b6e
-    00000002:
-      type: {class: VisualGraphPort, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
-      data:
-        Name: Input
-        Direction: 0
-        CanBeRemoved: 0
-        guid: e4aa9f7b-384a-48ca-86c8-19e1af0d2b6e
-        Connections:
-        - id: 3
-    00000003:
-      type: {class: VisualGraphPort/VisualGraphPortConnection, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
-      data:
-        Node: {fileID: 2599370616462985039}
-        port:
-          id: 0
-        guid: fc23577b-9761-4f82-bc63-83d6821256f5
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6fde670e7119d9429e3117e89788fe2, type: 3}
+  m_Name: Simple Graph
+  m_EditorClassIdentifier: 
+  StartingNode: {fileID: -4244378202077005130}
+  Nodes:
+  - {fileID: -4244378202077005130}
+  - {fileID: 2843988890808253228}
+  CommentBlocks: []
+  BlackboardProperties: []
+--- !u!114 &2843988890808253228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f410bd6e8d523a47b8745e559931533, type: 3}
+  m_Name: Example Node
+  m_EditorClassIdentifier: 
+  Ports:
+  - Name: Input
+    Direction: 0
+    CanBeRemoved: 0
+    guid: af71a15e-4711-4c6e-a75f-c7f4bd67fd4b
+    Connections:
+    - node_guid: 31a99217-b5cb-4fb2-822e-0b4361c0d060
+      port_guid: 76c3ee26-fdb5-48e7-9dc4-2f294e04cb27
+  internal_guid: 4d78d818-5c7d-4a73-b4c8-197c51af2a40
+  editor_ActiveNode: 0
+  position: {x: 453, y: 208}
+  ExampleBool: 0
+  ExampleInt: 0
+  ExampleString: 
+  ExampleFloat: 0
+  ExampleVector: {x: 0, y: 0, z: 0}

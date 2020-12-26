@@ -5,6 +5,7 @@
 ///-------------------------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace VisualGraphRuntime
@@ -30,9 +31,12 @@ namespace VisualGraphRuntime
         [Serializable]
         public class VisualGraphPortConnection
         {
-            [SerializeReference] public VisualGraphNode Node;    // Node that should contain a port based off the guid
-            [SerializeReference] public VisualGraphPort port;    // This must be set in the OnEnable for the graph cannot be stored
-            public string guid;               // Reference to the port that belongs to the Node
+            [NonSerialized] public bool initialized;
+            [NonSerialized] public VisualGraphNode Node;   // Node that should contain a port based off the guid
+            [NonSerialized] public VisualGraphPort port;   // This must be set in the OnEnable for the graph cannot be stored
+ 
+            public string node_guid;                       // Reference to the port that belongs to the Node
+            public string port_guid;                       // Reference to the port that belongs to the Node
         }
 
         // internals
@@ -40,7 +44,31 @@ namespace VisualGraphRuntime
         [HideInInspector] public PortDirection Direction;
         [HideInInspector] public bool CanBeRemoved = true;
         [HideInInspector] public string guid;
-        [HideInInspector] [SerializeReference] public List<VisualGraphPortConnection> Connections = new List<VisualGraphPortConnection>();
+
+        /// <summary>
+        /// List of all connections for this port.
+        /// </summary>
+        [HideInInspector][SerializeField] public List<VisualGraphPortConnection> Connections = new List<VisualGraphPortConnection>();
+
+        /// <summary>
+        /// Finds a Connection by port guid
+        /// </summary>
+        /// <param name="guid"></param>
+        /// <returns></returns>
+        public VisualGraphPortConnection FindConnectionByPortGuid(string guid)
+        {
+            return Connections.Where(c => c.port_guid.Equals(guid) == true).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Finds a Connection by node guid
+        /// </summary>
+        /// <param name="guid"></param>
+        /// <returns></returns>
+        public VisualGraphPortConnection FindConnectionByNodeGuid(string guid)
+        {
+            return Connections.Where(c => c.node_guid.Equals(guid) == true).FirstOrDefault();
+        }
 
         #region UNITY_EDITOR
 #if UNITY_EDITOR

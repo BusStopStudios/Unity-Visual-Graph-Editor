@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6953978751454193590
+--- !u!114 &-1757378864914681328
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13,19 +13,14 @@ MonoBehaviour:
   m_Name: Start
   m_EditorClassIdentifier: 
   Ports:
-  - id: 0
+  - Name: Next
+    Direction: 1
+    CanBeRemoved: 0
+    guid: c1ca17f1-9617-4911-8a4b-3a0079eb5dc7
+    Connections: []
+  internal_guid: b74a35fc-9f15-4e47-a760-91dadb419769
   editor_ActiveNode: 0
   position: {x: 270, y: 30}
-  references:
-    version: 1
-    00000000:
-      type: {class: VisualGraphPort, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
-      data:
-        Name: Next
-        Direction: 1
-        CanBeRemoved: 0
-        guid: 7da33361-a994-408a-a9e7-f9d62d6c1725
-        Connections: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38,8 +33,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6fde670e7119d9429e3117e89788fe2, type: 3}
   m_Name: Empty Graph
   m_EditorClassIdentifier: 
-  StartingNode: {fileID: -6953978751454193590}
+  StartingNode: {fileID: -1757378864914681328}
   Nodes:
-  - {fileID: -6953978751454193590}
+  - {fileID: -1757378864914681328}
   CommentBlocks: []
   BlackboardProperties: []
+--- !u!114 &6069609887101296818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed165b12bb8f4c948932f8ee28821eca, type: 3}
+  m_Name: Start
+  m_EditorClassIdentifier: 
+  Ports:
+  - Name: Next
+    Direction: 1
+    CanBeRemoved: 0
+    guid: 0a6bf948-ec12-4a6f-9fb7-fa3355f97d95
+    Connections: []
+  internal_guid: 4e5ad81c-24a2-435d-8218-21a63b09016d
+  editor_ActiveNode: 0
+  position: {x: 270, y: 30}

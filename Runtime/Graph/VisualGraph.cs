@@ -5,6 +5,7 @@
 ///-------------------------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace VisualGraphRuntime
@@ -15,7 +16,7 @@ namespace VisualGraphRuntime
     [Serializable]
     [GraphOrientation()]
     public abstract class VisualGraph : ScriptableObject
-    {
+	{
 		/// <summary>
 		/// Starting node can be found in the Nodes list as well
 		/// </summary>
@@ -43,13 +44,64 @@ namespace VisualGraphRuntime
 		public virtual VisualGraph Clone()
 		{
             VisualGraph clone = Instantiate(this);
-            return clone;
+			clone.InitializeConnections();
+			return clone;
 		}
 
 		/// <summary>
 		/// Once a graph is cloned Init should be called to ensure your nodes are setup
 		/// </summary>
-		public virtual void Init() { }
+		public virtual void Init() 
+		{
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public void InitializeConnections()
+        {
+			foreach (var node in Nodes)
+			{
+				foreach (var port in node.Ports)
+				{
+					foreach (var connection in port.Connections)
+					{
+						if (connection.initialized == false && string.IsNullOrEmpty(connection.node_guid) == false)
+						{
+							VisualGraphNode otherNode = FindNodeByGuid(connection.node_guid);
+							if (otherNode != null)
+							{
+								VisualGraphPort otherPort = otherNode.FindPortByGuid(connection.port_guid);
+								if (otherPort != null)
+								{
+									VisualGraphPort.VisualGraphPortConnection otherConnection = otherPort.FindConnectionByNodeGuid(node.guid);
+									if (otherConnection != null)
+									{
+										otherConnection.initialized = true;
+										otherConnection.Node = node;
+										otherConnection.port = port;
+
+										connection.initialized = true;
+										connection.Node = otherNode;
+										connection.port = otherPort;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// Find a graph node based off guid
+		/// </summary>
+		/// <param name="guid"></param>
+		/// <returns></returns>
+		public VisualGraphNode FindNodeByGuid(string guid)
+		{
+			return Nodes.Where(n => n.guid.Equals(guid) == true).FirstOrDefault();
+		}
 
 		/// <summary>
 		/// Get a Value from the Blackboard based off a string and return true otherwise return false
@@ -57,7 +109,7 @@ namespace VisualGraphRuntime
 		/// <typeparam name="T"></typeparam>
 		/// <param name="propertyName"></param>
 		/// <returns></returns>
-        public bool GetPropertyValue<T>(string propertyName, ref T value)
+		public bool GetPropertyValue<T>(string propertyName, ref T value)
         {
             for (int i = 0; i < BlackboardProperties.Count; i++)
             {
@@ -74,5 +126,5 @@ namespace VisualGraphRuntime
             Debug.LogWarning($"Unable to find property {propertyName}");
             return false;
         }
-	}
+    }
 }

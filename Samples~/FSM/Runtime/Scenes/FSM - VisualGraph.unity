@@ -153,8 +153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlackboardProperties:
-  - {fileID: 1168730035}
-  - {fileID: 1709363379}
+  - {fileID: 1778265725}
+  - {fileID: 1156488655}
   graph: {fileID: 11400000, guid: 1e77de879827f5e4db3fa372b1cae8ff, type: 2}
 --- !u!4 &234770939
 Transform:
@@ -170,7 +170,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1168730035
+--- !u!114 &1156488655
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -179,13 +179,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd71a48f486cef54b885527933b16c89, type: 3}
+  m_Script: {fileID: 11500000, guid: b45a8f6e55846134ca49edb9fe1326b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  overrideProperty: 0
-  guid: 4524a90c-86cc-4ffd-bfca-164036b81328
-  Name: Delay
-  abstractData: 0.5
+  overrideProperty: 1
+  guid: a23f570e-4449-4668-9d43-f64d2d478625
+  Name: Light
+  abstractData: {fileID: 2048076127}
 --- !u!1 &1252859649
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,7 +269,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1709363379
+--- !u!114 &1778265725
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -278,13 +278,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b45a8f6e55846134ca49edb9fe1326b6, type: 3}
+  m_Script: {fileID: 11500000, guid: bd71a48f486cef54b885527933b16c89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  overrideProperty: 1
-  guid: 8b4760f8-509a-4ee7-bf48-93a10b34ec2e
-  Name: Light
-  abstractData: {fileID: 2048076127}
+  overrideProperty: 0
+  guid: dbbe92ef-c21b-4d84-92ab-93871e307abd
+  Name: Delay
+  abstractData: 0
 --- !u!1 &2048076127
 GameObject:
   m_ObjectHideFlags: 0

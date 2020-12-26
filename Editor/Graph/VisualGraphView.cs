@@ -126,10 +126,14 @@ namespace VisualGraphEditor
 			DeleteElements(nodes.ToList());
 			DeleteElements(edges.ToList());
 			activeVisualGraph = false;
+			BlackboardView.ClearBlackboard();
 
 			visualGraph = _visualGraph;
 			if (visualGraph != null)
 			{
+				// When the graph is loaded connections need to be remade
+				visualGraph.InitializeConnections();
+
 				activeVisualGraph = true;
 
 				GraphOrientationAttribute orientationAttrib = visualGraph.GetType().GetCustomAttribute<GraphOrientationAttribute>();
@@ -188,7 +192,7 @@ namespace VisualGraphEditor
 							Port port = graphPort.editor_port as Port;
 							foreach (VisualGraphPort.VisualGraphPortConnection graph_connection in graphPort.Connections)
 							{
-								VisualGraphPort other_port = graph_connection.Node.FindPortByGuid(graph_connection.guid);
+								VisualGraphPort other_port = graph_connection.Node.FindPortByGuid(graph_connection.port_guid);
 								Port other_editor_port = other_port.editor_port as Port;
 								AddElement(port.ConnectTo(other_editor_port));
 							}
@@ -512,15 +516,19 @@ namespace VisualGraphEditor
 
 			graph_input_port.Connections.Add(new VisualGraphPort.VisualGraphPortConnection()
 			{
+				initialized = true,
 				Node = edge.output.node.userData as VisualGraphNode,
 				port = graph_output_port,
-				guid = graph_output_port.guid
+				port_guid = graph_output_port.guid,
+				node_guid = graph_output_node.guid
 			});
 			graph_output_port.Connections.Add(new VisualGraphPort.VisualGraphPortConnection()
 			{
+				initialized = true,
 				Node = edge.input.node.userData as VisualGraphNode,
 				port = graph_input_port,
-				guid = graph_input_port.guid
+				port_guid = graph_input_port.guid,
+				node_guid = graph_input_node.guid
 			});
 
 			EditorUtility.SetDirty(visualGraph);
@@ -663,11 +671,11 @@ namespace VisualGraphEditor
 
 			VisualGraphPort.VisualGraphPortConnection connection = null;
 
-			connection = graph_input_port.Connections.Where(p => p.guid.Equals(graph_output_port.guid) == true).FirstOrDefault();
+			connection = graph_input_port.Connections.Where(p => p.port_guid.Equals(graph_output_port.guid) == true).FirstOrDefault();
 			Debug.Assert(connection != null, "Unable to find connection, where did it go");
 			graph_input_port.Connections.Remove(connection);
 
-			connection = graph_output_port.Connections.Where(p => p.guid.Equals(graph_input_port.guid) == true).FirstOrDefault();
+			connection = graph_output_port.Connections.Where(p => p.port_guid.Equals(graph_input_port.guid) == true).FirstOrDefault();
 			Debug.Assert(connection != null, "Unable to find connection, where did it go");
 			graph_output_port.Connections.Remove(connection);
 		}
