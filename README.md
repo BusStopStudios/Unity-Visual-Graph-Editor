@@ -38,4 +38,4 @@ This graph editor allows you to skip the editor work and create a Node Graph tha
 ![](https://raw.githubusercontent.com/BusStopStudios/Doc/main/Visual-Graph/FSM%20Component.PNG)
 
 # Bugs
-- When downloading the Samples the edges break. 
+- Inspector does not refresh when blackboard properties change (new, delete, or update)
