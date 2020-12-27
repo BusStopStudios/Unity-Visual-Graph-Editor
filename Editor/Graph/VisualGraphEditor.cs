@@ -4,6 +4,7 @@
 // Copyright (c) Bus Stop Studios.
 ///-------------------------------------------------------------------------------------------------
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -18,6 +19,7 @@ namespace VisualGraphEditor
 		private Component visualGraphComponent;
 		private VisualGraphView graphView;
 		private VisualGraph visualGraph;
+		private UnityEngine.Object objectSelection; // Used for enter/exit playmode
 
 		/// <summary>
 		/// Create a Visual Graph Window to support a VisualGraph object
@@ -50,6 +52,37 @@ namespace VisualGraphEditor
 			GenerateToolbar();
 			graphView.CreateMinimap(this.position.width);
 			graphView.CreateBlackboard();
+
+			EditorApplication.playModeStateChanged += LogPlayModeState;
+		}
+
+        private void OnDisable()
+        {
+			EditorApplication.playModeStateChanged -= LogPlayModeState;
+		}
+
+		private void LogPlayModeState(PlayModeStateChange state)
+		{
+			switch(state)
+            {
+				case PlayModeStateChange.ExitingEditMode:
+					objectSelection = Selection.activeObject;
+					Selection.activeObject = null;
+					break;
+
+				case PlayModeStateChange.EnteredPlayMode:
+					Selection.activeObject = objectSelection;
+					break;
+
+				case PlayModeStateChange.ExitingPlayMode:
+					objectSelection = Selection.activeObject;
+					Selection.activeObject = null;
+					break;
+
+				case PlayModeStateChange.EnteredEditMode:
+					Selection.activeObject = objectSelection;
+					break;
+            }
 		}
 
 		/// <summary>
@@ -119,10 +152,13 @@ namespace VisualGraphEditor
 		/// </summary>
 		private void Update()
 		{
-			//if (graphView != null)
-			//{
-			//	graphView.OnGUI();
-			//}
+			if (Application.isPlaying)
+            {
+				if (graphView != null)
+				{
+					graphView.Update();
+				}
+			}
 		}
 
 		/// <summary>

@@ -28,6 +28,7 @@ namespace VisualGraphEditor
 		private VisualGraphSearchWindow searchWindow;
 		private VisualGraphEditor editorWindow;
 		private Orientation orientation;
+
 		// Runtime Type / Editor Type
 		private Dictionary<Type, Type> visualGraphNodeLookup = new Dictionary<Type, Type>();
 
@@ -66,6 +67,7 @@ namespace VisualGraphEditor
 					}
 				}
 			}
+
 		}
 
 		public void CreateMinimap(float windowWidth)
@@ -84,12 +86,16 @@ namespace VisualGraphEditor
 			Add(BlackboardView.blackboard);
 		}
 
-		#region View OnGUI
+		#region View OnGUI/Update
+
 		public void OnGUI()
 		{
-			if (Minimap != null) Minimap.SetPosition(new Rect(contentRect.width - 210, 30, 200, 140));
-			if (Blackboard != null) Blackboard.SetPosition(new Rect(10, 30, Blackboard.style.width.value.value, Blackboard.style.height.value.value));
+            if (Minimap != null) Minimap.SetPosition(new Rect(contentRect.width - 210, 30, 200, 140));
+            if (Blackboard != null) Blackboard.SetPosition(new Rect(10, 30, Blackboard.style.width.value.value, Blackboard.style.height.value.value));
+		}
 
+		public void Update()
+		{
 			nodes.ForEach(nodeView =>
 			{
 				VisualGraphNode node = nodeView.userData as VisualGraphNode;
@@ -123,6 +129,7 @@ namespace VisualGraphEditor
 		{
 			// Set the graph to null and clear the edges and nodes before we get going.
 			visualGraph = null;
+			DeleteElements(graphElements.ToList());
 			DeleteElements(nodes.ToList());
 			DeleteElements(edges.ToList());
 			activeVisualGraph = false;
@@ -199,17 +206,53 @@ namespace VisualGraphEditor
 						}
 					}
 				}
+
+				//foreach (var group in visualGraph.Groups)
+				//{
+				//	AddGroupBlock(group);
+				//}
 			}
 		}
 		#endregion
 
-		#region Comment Block
+		//#region Group Block
 
-		public void CreateCommentBlock(Vector2 position)
-		{
-		}
+		//public void CreateGroupBlock(Vector2 position)
+		//{
+		//	Undo.RecordObject(visualGraph, "Create Node");
+		//	VisualGraphGroup block = new VisualGraphGroup()
+		//	{
+		//		title = "Graph Group",
+		//		position = position
+		//	};
+		//	visualGraph.Groups.Add(block);
+		//	AddGroupBlock(block);
+		//}
 
-		#endregion
+		//public void AddGroupBlock(VisualGraphGroup graphGroup)
+  //      {
+		//	var group = new VisualGraphGroupView
+		//	{
+		//		autoUpdateGeometry = true,
+		//		title = graphGroup.title,
+		//		userData = graphGroup
+		//	};
+		//	group.SetPosition(new Rect(graphGroup.position.x, graphGroup.position.y, 300, 200));
+		//	AddElement(group);
+
+		//	HashSet<GraphElement> nodes = new HashSet<GraphElement>();
+		//	foreach(var node_guid in graphGroup.node_guids)
+  //          {
+		//		VisualGraphNode node = visualGraph.FindNodeByGuid(node_guid);
+		//		if (node != null)
+  //              {
+		//			nodes.Add(node.graphElement as GraphElement);
+		//		}
+		//	}
+		//	group.CollectElements(nodes, null);
+		//}
+
+		//#endregion
 
 		#region Node Creation
 		/// <summary>
@@ -220,12 +263,10 @@ namespace VisualGraphEditor
 		/// <param name="nodeType"></param>
 		public void CreateNode(Vector2 position, Type nodeType)
 		{
-			VisualGraphNode graphNode = Activator.CreateInstance(nodeType) as VisualGraphNode;
-			graphNode.position = position;
+			Undo.RecordObject(visualGraph, "Create Node");
+			VisualGraphNode graphNode = visualGraph.AddNode(nodeType);
 			Undo.RegisterCreatedObjectUndo(graphNode, "Create Node");
-
-			Undo.RecordObject(visualGraph, "Add Node");
-			visualGraph.Nodes.Add(graphNode);
+			graphNode.position = position;
 
 			if (graphNode.name == null || graphNode.name.Trim() == "") graphNode.name = UnityEditor.ObjectNames.NicifyVariableName(nodeType.Name);
 			if (!string.IsNullOrEmpty(AssetDatabase.GetAssetPath(visualGraph))) AssetDatabase.AddObjectToAsset(graphNode, visualGraph);
@@ -256,6 +297,9 @@ namespace VisualGraphEditor
 			node.title = GetGraphNodeName(graphNode.GetType());
 			node.userData = graphNode;
 			node.styleSheets.Add(Resources.Load<StyleSheet>("Node"));
+
+			// The Editor stores a reference to the graph created;
+			graphNode.graphElement = node;
 
 			// If there are extra Styles apply them
 			IEnumerable<CustomNodeStyleAttribute> customStyleAttribs = graphNode.GetType().GetCustomAttributes<CustomNodeStyleAttribute>();
@@ -307,6 +351,9 @@ namespace VisualGraphEditor
 
 			// Refresh the view
 			node.RefreshExpandedState();
+
+			// If there are custom elements or drawing, let the derived node handle this
+			node.DrawNode();
 
 			// If the node wants to hide the properties the user must make a View node and set this to false
 			if (node.ShowNodeProperties)
@@ -415,12 +462,7 @@ namespace VisualGraphEditor
 			VisualGraphNode graphNode = node.userData as VisualGraphNode;
 			Undo.RecordObject(graphNode, "Add Port to Node");
 
-			VisualGraphPort graphPort = new VisualGraphPort();
-			graphPort.Name = name;
-			graphPort.guid = Guid.NewGuid().ToString();
-			graphPort.Direction = direction;
-			graphNode.Ports.Add(graphPort);
-
+			VisualGraphPort graphPort = graphNode.AddPort(name, direction);
 			AddPort(graphPort, node);
 
 			EditorUtility.SetDirty(visualGraph);
@@ -624,8 +666,14 @@ namespace VisualGraphEditor
 					{
 						RemoveNode((Node)element);
 					}
-				}
-			}
+                    //else if (typeof(Group).IsInstanceOfType(element) == true)
+                    //{
+                    //    VisualGraphGroup block = ((Group)element).userData as VisualGraphGroup;
+                    //    Undo.RecordObjects(new UnityEngine.Object[] { visualGraph }, "Add Port to Node");
+                    //    visualGraph.Groups.Remove(block);
+                    //}
+                }
+            }
 
 			if (change.movedElements != null)
 			{
@@ -657,10 +705,8 @@ namespace VisualGraphEditor
 		private void RemoveNode(Node node)
 		{
 			VisualGraphNode graphNode = node.userData as VisualGraphNode;
-
 			Undo.RecordObjects(new UnityEngine.Object[] { graphNode, visualGraph }, "Delete Node");
-
-			visualGraph.Nodes.Remove(graphNode);
+			visualGraph.RemoveNode	(graphNode);
 			Undo.DestroyObjectImmediate(graphNode);
 		}
 
@@ -668,16 +714,8 @@ namespace VisualGraphEditor
 		{
 			VisualGraphPort graph_input_port = edge.input.userData as VisualGraphPort;
 			VisualGraphPort graph_output_port = edge.output.userData as VisualGraphPort;
-
-			VisualGraphPort.VisualGraphPortConnection connection = null;
-
-			connection = graph_input_port.Connections.Where(p => p.port_guid.Equals(graph_output_port.guid) == true).FirstOrDefault();
-			Debug.Assert(connection != null, "Unable to find connection, where did it go");
-			graph_input_port.Connections.Remove(connection);
-
-			connection = graph_output_port.Connections.Where(p => p.port_guid.Equals(graph_input_port.guid) == true).FirstOrDefault();
-			Debug.Assert(connection != null, "Unable to find connection, where did it go");
-			graph_output_port.Connections.Remove(connection);
+			graph_input_port.RemoveConnectionByPortGuid(graph_output_port.guid);
+			graph_output_port.RemoveConnectionByPortGuid(graph_input_port.guid);
 		}
 		#endregion
 	}

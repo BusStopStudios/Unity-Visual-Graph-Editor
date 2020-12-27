@@ -70,6 +70,34 @@ namespace VisualGraphRuntime
             return Connections.Where(c => c.node_guid.Equals(guid) == true).FirstOrDefault();
         }
 
+        /// <summary>
+        /// Removes the port based off guid
+        /// </summary>
+        /// <param name="guid"></param>
+        public void RemoveConnectionByPortGuid(string guid)
+        {
+            VisualGraphPortConnection connection = Connections.Where(p => p.port_guid.Equals(guid) == true).FirstOrDefault();
+            if (connection != null)
+            {
+                Connections.Remove(connection);
+            }
+        }
+
+        /// <summary>
+        /// Remove all connections the port contains
+        /// </summary>
+        public void ClearConnections()
+        {
+            foreach(VisualGraphPortConnection connection in Connections)
+            {
+                if (connection.port != null)
+                {
+                    connection.port.RemoveConnectionByPortGuid(guid);
+                }
+            }
+            Connections.Clear();
+        }
+
         #region UNITY_EDITOR
 #if UNITY_EDITOR
         // The Editor Port (easier to link)

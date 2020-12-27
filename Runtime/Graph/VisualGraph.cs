@@ -27,15 +27,15 @@ namespace VisualGraphRuntime
         /// </summary>
         [HideInInspector] public List<VisualGraphNode> Nodes = new List<VisualGraphNode>();
 
-		/// <summary>
-		/// Comment Blocks. Not supported at this time
-		/// </summary>
-		[HideInInspector] public List<CommentBlock> CommentBlocks = new List<CommentBlock>();
+        /// <summary>
+        /// Comment Blocks. Not supported at this time
+        /// </summary>
+        //[HideInInspector] [SerializeField] public List<VisualGraphGroup> Groups = new List<VisualGraphGroup>();
 
 		/// <summary>
 		/// Blackboard properties. Get/Set these through your behaviour
 		/// </summary>
-		[SerializeReference] public List<AbstractBlackboardProperty> BlackboardProperties = new List<AbstractBlackboardProperty>();
+		[SerializeReference] [HideInInspector] public List<AbstractBlackboardProperty> BlackboardProperties = new List<AbstractBlackboardProperty>();
 
 		/// <summary>
 		/// Creates a clone of this graph (used for internal graph settings for the MonoBehaviour)
@@ -56,7 +56,7 @@ namespace VisualGraphRuntime
 		}
 
 		/// <summary>
-		/// 
+		/// Connect all connections
 		/// </summary>
 		public void InitializeConnections()
         {
@@ -90,6 +90,43 @@ namespace VisualGraphRuntime
 						}
 					}
 				}
+			}
+		}
+
+		/// <summary>
+		/// Adds a new node to the graph based off type
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <returns></returns>
+		public virtual VisualGraphNode AddNode<T>() where T : VisualGraphNode
+		{
+			return AddNode(typeof(T)) as T;
+		}
+
+		/// <summary>
+		/// Adds a new node to the graph based off type
+		/// </summary>
+		/// <param name="nodeType"></param>
+		/// <returns></returns>
+		public virtual VisualGraphNode AddNode(Type nodeType)
+        {
+			VisualGraphNode graphNode = Activator.CreateInstance(nodeType) as VisualGraphNode;
+			graphNode.graph = this;
+			Nodes.Add(graphNode);
+			return graphNode;
+		}
+
+		/// <summary>
+		/// Removes the given node from the graph
+		/// </summary>
+		/// <param name="graphNode"></param>
+		public virtual void RemoveNode(VisualGraphNode graphNode)
+		{
+			graphNode.ClearConnections();
+			Nodes.Remove(graphNode);
+			if (Application.isPlaying)
+			{
+				Destroy(graphNode);
 			}
 		}
 

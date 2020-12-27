@@ -43,7 +43,7 @@ namespace VisualGraphEditor
 				}
 				graph.Nodes = new List<VisualGraphNode>();
 
-				graph.CommentBlocks.Clear();
+				//graph.Groups.Clear();
 				graph.BlackboardProperties.Clear();
 				
 				AssetDatabase.SaveAssets();

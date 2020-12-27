@@ -8,7 +8,11 @@ namespace VisualGraphRuntime
     /// Not supported at this time
     /// </summary>
     [Serializable]
-    public class CommentBlock
+    public class VisualGraphGroup
     {
+        public string title;
+        public Vector2 position;
+
+        public List<string> node_guids = new List<string>();
     }
 }

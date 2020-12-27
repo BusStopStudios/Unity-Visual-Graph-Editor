@@ -53,7 +53,7 @@ namespace VisualGraphEditor
         {
             var tree = new List<SearchTreeEntry>();
             tree.Add(new SearchTreeGroupEntry(new GUIContent("Create Node"), 0));
-            tree.Add(new SearchTreeGroupEntry(new GUIContent("Nodes"), 1));
+            //tree.Add(new SearchTreeGroupEntry(new GUIContent("Nodes"), 1));
 
             foreach (var type in nodeTypes)
             {
@@ -69,16 +69,16 @@ namespace VisualGraphEditor
 
                 tree.Add(new SearchTreeEntry(new GUIContent(display_name, indentationIcon))
                 {
-                    level = 2,
+                    level = 1,
                     userData = type
                 });
             }
 
-            tree.Add(new SearchTreeEntry(new GUIContent("Comment Block", indentationIcon))
-            {
-                level = 1,
-                userData = new Group()
-            });
+            //tree.Add(new SearchTreeEntry(new GUIContent("Group", indentationIcon))
+            //{
+            //    level = 1,
+            //    userData = new Group()
+            //});
 
             return tree;
         }
@@ -94,9 +94,9 @@ namespace VisualGraphEditor
                         graphView.CreateNode(graphMousePosition, nodeData);
                         return true;
                     }
-                case Group group:
-                    graphView.CreateCommentBlock(graphMousePosition);
-                    return true;
+                //case Group group:
+                //    graphView.CreateGroupBlock(graphMousePosition);
+                //    return true;
             }
             return false;
         }

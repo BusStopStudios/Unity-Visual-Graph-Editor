@@ -27,6 +27,8 @@ namespace VisualGraphRuntime
         public IEnumerable<VisualGraphPort> Inputs { get { foreach (VisualGraphPort port in Ports) { if (port.Direction == VisualGraphPort.PortDirection.Input) yield return port; } } }
         public IEnumerable<VisualGraphPort> Outputs { get { foreach (VisualGraphPort port in Ports) { if (port.Direction == VisualGraphPort.PortDirection.Output) yield return port; } } }
 
+        public VisualGraph graph;
+
         /// <summary>
         /// Get the guid for the Node
         /// </summary>
@@ -53,6 +55,17 @@ namespace VisualGraphRuntime
             }
         }
 
+        public virtual VisualGraphPort AddPort(string name, VisualGraphPort.PortDirection direction)
+        {
+            VisualGraphPort graphPort = new VisualGraphPort();
+            graphPort.Name = name;
+            graphPort.guid = Guid.NewGuid().ToString();
+            graphPort.Direction = direction;
+            Ports.Add(graphPort);
+
+            return graphPort;
+        }
+
         /// <summary>
         /// Find the first port based off guid Id
         /// </summary>
@@ -73,17 +86,29 @@ namespace VisualGraphRuntime
             return Ports.Where(p => p.Name.Equals(name) == true).FirstOrDefault();
         }
 
-		#region UNITY_EDITOR
+        /// <summary>
+        /// Remove all connections this node has
+        /// </summary>
+        public void ClearConnections()
+        {
+            foreach (VisualGraphPort port in Ports)
+            {
+                port.ClearConnections();
+            }
+        }
 
-		/// <summary>
-		/// If set the node will highlight in the editor for visual feedback at runtime. It is up to the user to disable
-		/// other nodes that are active otherwise you will get undesired results in the view.
-		/// </summary>
-		[HideInInspector] public bool editor_ActiveNode;
+        #region UNITY_EDITOR
+
+        /// <summary>
+        /// If set the node will highlight in the editor for visual feedback at runtime. It is up to the user to disable
+        /// other nodes that are active otherwise you will get undesired results in the view.
+        /// </summary>
+        [HideInInspector] public bool editor_ActiveNode;
 
 #if UNITY_EDITOR
         #region Graph View Editor Values
         [HideInInspector] public Vector2 position;
+        [HideInInspector][NonSerialized] public object graphElement;
         #endregion
 
         public virtual System.Type InputType => typeof(bool);
