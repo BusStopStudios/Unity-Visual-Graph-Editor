@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System.Reflection;
 
 namespace VisualGraphRuntime
 {
@@ -27,7 +28,8 @@ namespace VisualGraphRuntime
         public IEnumerable<VisualGraphPort> Inputs { get { foreach (VisualGraphPort port in Ports) { if (port.Direction == VisualGraphPort.PortDirection.Input) yield return port; } } }
         public IEnumerable<VisualGraphPort> Outputs { get { foreach (VisualGraphPort port in Ports) { if (port.Direction == VisualGraphPort.PortDirection.Output) yield return port; } } }
 
-        public VisualGraph graph;
+
+        [HideInInspector] public VisualGraph graph;
 
         /// <summary>
         /// Get the guid for the Node
@@ -37,7 +39,7 @@ namespace VisualGraphRuntime
         /// <summary>
         /// List of all ports that belong to this node (ports can be either in or out
         /// </summary>
-        [HideInInspector] [SerializeField] public List<VisualGraphPort> Ports = new List<VisualGraphPort>();
+        [HideInInspector] [SerializeReference] public List<VisualGraphPort> Ports = new List<VisualGraphPort>();
 
         /// <summary>
         /// All Nodes have a guid for references
@@ -55,9 +57,23 @@ namespace VisualGraphRuntime
             }
         }
 
+        /// <summary>
+        /// Called when created. Use this to add required ports and additional setup
+        /// </summary>
+        public virtual void Init()
+        {
+        }
+
         public virtual VisualGraphPort AddPort(string name, VisualGraphPort.PortDirection direction)
         {
-            VisualGraphPort graphPort = new VisualGraphPort();
+            DefaultPortTypeAttribute portAttribute = GetType().GetCustomAttribute<DefaultPortTypeAttribute>();
+            Type portType = typeof(VisualGraphPort);
+            if (portAttribute != null)
+            {
+                portType = portAttribute.type;
+            }
+
+            VisualGraphPort graphPort = Activator.CreateInstance(portType) as VisualGraphPort;
             graphPort.Name = name;
             graphPort.guid = Guid.NewGuid().ToString();
             graphPort.Direction = direction;

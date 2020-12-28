@@ -36,13 +36,14 @@ public class FSMGraph : VisualGraph
 		}
 	}
 
-	public void GoToState(string transition)
+	public void GoToState(FSMPort.State state)
 	{
 		if (currentState != null)
 		{
 			foreach (var port in currentState.Outputs)
 			{
-				if (port.Name == transition)
+				FSMPort fsmPort = (FSMPort)port;
+				if (fsmPort.state == state)
 				{
 					// We assume only one connection based off settings
 					if (port.Connections.Count >= 0)

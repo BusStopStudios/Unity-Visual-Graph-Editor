@@ -31,6 +31,7 @@ namespace VisualGraphEditor
 
 		// Runtime Type / Editor Type
 		private Dictionary<Type, Type> visualGraphNodeLookup = new Dictionary<Type, Type>();
+		private Dictionary<Type, Type> visualGraphPortLookup = new Dictionary<Type, Type>();
 
 		public bool activeVisualGraph = false;
 
@@ -60,10 +61,16 @@ namespace VisualGraphEditor
 				var types = assembly.GetTypes();
 				foreach (var type in types)
 				{
-					CustomNodeViewAttribute attrib = type.GetCustomAttribute<CustomNodeViewAttribute>();
-					if (attrib != null && attrib.type.IsAbstract == false)
+					CustomNodeViewAttribute nodeAttrib = type.GetCustomAttribute<CustomNodeViewAttribute>();
+					if (nodeAttrib != null && nodeAttrib.type.IsAbstract == false)
 					{
-						visualGraphNodeLookup.Add(attrib.type, type);
+						visualGraphNodeLookup.Add(nodeAttrib.type, type);
+					}
+
+					CustomPortViewAttribute portAttrib = type.GetCustomAttribute<CustomPortViewAttribute>();
+					if (portAttrib != null && portAttrib.type.IsAbstract == false)
+					{
+						visualGraphPortLookup.Add(portAttrib.type, type);
 					}
 				}
 			}
@@ -161,14 +168,9 @@ namespace VisualGraphEditor
 					visualGraph.StartingNode = startingNode;
 					startingNode.name = "Start";
 					startingNode.position = new Vector2(270, 30);
-					VisualGraphPort graphPort = new VisualGraphPort()
-					{
-						Name = "Next",
-						Direction = VisualGraphPort.PortDirection.Output,
-						guid = Guid.NewGuid().ToString(),
-						CanBeRemoved = false
-					};
-					startingNode.Ports.Add(graphPort);
+
+					VisualGraphPort graphPort = startingNode.AddPort("Next", VisualGraphPort.PortDirection.Output);
+					graphPort.CanBeRemoved = false;
 					visualGraph.Nodes.Add(startingNode);
 
 					if (startingNode.name == null || startingNode.name.Trim() == "") startingNode.name = UnityEditor.ObjectNames.NicifyVariableName(startingNode.name);
@@ -183,11 +185,6 @@ namespace VisualGraphEditor
 					Node node = AddGraphNode(graphNode);
 					Vector2 pos = new Vector2(node.style.left.value.value, node.style.top.value.value);
 					((VisualGraphNode)node.userData).position = pos;
-
-					foreach (var graphPort in graphNode.Ports)
-					{
-						AddPort(graphPort, node);
-					}
 				}
 
 				foreach (VisualGraphNode graphNode in visualGraph.Nodes)
@@ -215,7 +212,7 @@ namespace VisualGraphEditor
 		}
 		#endregion
 
-		//#region Group Block
+		#region Group Block
 
 		//public void CreateGroupBlock(Vector2 position)
 		//{
@@ -252,7 +249,7 @@ namespace VisualGraphEditor
 		//	group.CollectElements(nodes, null);
 		//}
 
-		//#endregion
+		#endregion
 
 		#region Node Creation
 		/// <summary>
@@ -272,7 +269,6 @@ namespace VisualGraphEditor
 			if (!string.IsNullOrEmpty(AssetDatabase.GetAssetPath(visualGraph))) AssetDatabase.AddObjectToAsset(graphNode, visualGraph);
 
 			Node node = AddGraphNode(graphNode);
-			CreateGraphNodePorts(graphNode, node);
 
 			AssetDatabase.ImportAsset(AssetDatabase.GetAssetPath(graphNode));
 		}
@@ -349,8 +345,11 @@ namespace VisualGraphEditor
 			node.capabilities = node.SetCapabilities(node.capabilities);
 			node.SetPosition(new Rect(graphNode.position, node.default_size));
 
-			// Refresh the view
-			node.RefreshExpandedState();
+			// Add the needed ports
+			foreach (var graphPort in graphNode.Ports)
+			{
+				AddPort(graphPort, node);
+			}
 
 			// If there are custom elements or drawing, let the derived node handle this
 			node.DrawNode();
@@ -375,66 +374,14 @@ namespace VisualGraphEditor
 			// Finally add the element
 			AddElement(node);
 
+			// Refresh the view
+			node.RefreshExpandedState();
+			node.RefreshPorts();
+
 			return node;
 		}
 
-		/// <summary>
-		/// Create a port for the given node
-		/// </summary>
-		/// <param name="graphNode"></param>
-		/// <param name="node"></param>
-		private void CreateGraphNodePorts(VisualGraphNode graphNode, Node node)
-		{
-			NodePortAggregateAttribute dynamicsAttrib = graphNode.GetType().GetCustomAttribute<NodePortAggregateAttribute>();
-			Debug.Assert(dynamicsAttrib != null, $"Graph node requires a NodePortAggregateAttribute {graphNode.GetType().Name}");
-
-			PortCapacityAttribute capacityAttrib = graphNode.GetType().GetCustomAttribute<PortCapacityAttribute>();
-			Debug.Assert(capacityAttrib != null, $"Graph node requires a PortCapacityAttribute {graphNode.GetType().Name}");
-
-			if (dynamicsAttrib.InputPortAggregate != NodePortAggregateAttribute.PortAggregate.None)
-			{
-				Port.Capacity capacity = (capacityAttrib.InputPortCapacity == PortCapacityAttribute.Capacity.Single) ? Port.Capacity.Single : Port.Capacity.Multi;
-
-				var port = node.InstantiatePort(orientation, Direction.Input, capacity, graphNode.InputType);
-				port.portName = "Input";
-
-				VisualGraphPort graphPort = new VisualGraphPort()
-				{
-					Name = "Input",
-					Direction = VisualGraphPort.PortDirection.Input,
-					guid = Guid.NewGuid().ToString().ToString(),
-					CanBeRemoved = false
-				};
-				graphPort.editor_port = port;
-				graphNode.Ports.Add(graphPort);
-				port.userData = graphPort;
-				port.AddManipulator(new EdgeConnector<Edge>(this));
-				node.inputContainer.Add(port);
-			}
-
-			if (dynamicsAttrib.OutputPortAggregate == NodePortAggregateAttribute.PortAggregate.Single)
-			{
-				Port.Capacity capacity = (capacityAttrib.OutputPortCapacity == PortCapacityAttribute.Capacity.Single) ? Port.Capacity.Single : Port.Capacity.Multi;
-				var port = node.InstantiatePort(orientation, Direction.Output, capacity, graphNode.OutputType);
-				port.portName = "Exit";
-				VisualGraphPort graphPort = new VisualGraphPort()
-				{
-					Direction = VisualGraphPort.PortDirection.Output,
-					guid = Guid.NewGuid().ToString(),
-					Name = "Exit"
-				};
-				graphPort.editor_port = port;
-				graphNode.Ports.Add(graphPort);
-				port.userData = graphPort;
-				port.AddManipulator(new EdgeConnector<Edge>(this));
-				node.outputContainer.Add(port);
-			}
-
-			node.RefreshExpandedState();
-			node.RefreshPorts();
-		}
-
-		private string GetGraphNodeName(Type type)
+        private string GetGraphNodeName(Type type)
 		{
 			string display_name = "";
 			if (type.GetCustomAttribute<NodeNameAttribute>() != null)
@@ -503,19 +450,35 @@ namespace VisualGraphEditor
 			port.userData = graphPort;
 			graphPort.editor_port = port;
 
-			// Allow the user to change the name of a port
-			TextField leftField = new TextField();
-			leftField.value = graphPort.Name;
-			leftField.style.width = 100;
-			leftField.RegisterCallback<ChangeEvent<string>>(
-				(evt) =>
+			// Custom View for ports
+			NodePortAggregateAttribute portAggregateAttrib = graphNode.GetType().GetCustomAttribute<NodePortAggregateAttribute>();
+			NodePortAggregateAttribute.PortAggregate aggregate = NodePortAggregateAttribute.PortAggregate.None;
+			if (graphPort.Direction == VisualGraphPort.PortDirection.Input)
+			{
+				aggregate = (portAggregateAttrib.InputPortAggregate	== NodePortAggregateAttribute.PortAggregate.Single) ? NodePortAggregateAttribute.PortAggregate.Single : NodePortAggregateAttribute.PortAggregate.Multiple;
+			}
+			else
+			{
+				aggregate = (portAggregateAttrib.OutputPortAggregate == NodePortAggregateAttribute.PortAggregate.Single) ? NodePortAggregateAttribute.PortAggregate.Single : NodePortAggregateAttribute.PortAggregate.Multiple;
+			}
+
+			VisualGraphPortView graphPortView = null;
+			if (aggregate == NodePortAggregateAttribute.PortAggregate.Single)
+			{
+				graphPortView = Activator.CreateInstance(typeof(VisualGraphLabelPortView)) as VisualGraphLabelPortView;
+			}
+			else
+            {
+				Type portViewType = null;
+				visualGraphPortLookup.TryGetValue(graphPort.GetType(), out portViewType);
+				if (portViewType == null)
 				{
-					if (string.IsNullOrEmpty(evt.newValue) == false) graphPort.Name = evt.newValue;
-					EditorUtility.SetDirty(visualGraph);
-					AssetDatabase.SaveAssets();
+					portViewType = typeof(VisualGraphPortView);
 				}
-			);
-			port.Add(leftField);
+				graphPortView = Activator.CreateInstance(portViewType) as VisualGraphPortView;
+			}
+			graphPortView.CreateView(graphPort);
+			port.Add(graphPortView);
 
 			// If the user can remove a port add a button
 			if (graphPort.CanBeRemoved)

@@ -13,7 +13,9 @@ using VisualGraphRuntime;
 // Override the default settings for the Port Capacity
 [PortCapacity(PortCapacityAttribute.Capacity.Multi, PortCapacityAttribute.Capacity.Multi)]
 // Custom style sheet for your node
-[CustomNodeStyle("ExampleNodeStyle")] 
+[CustomNodeStyle("ExampleNodeStyle")]
+// Default Port to use
+[DefaultPortType(typeof(ExamplePort))]
 public class ExampleNode : VisualGraphNode
 {
     public bool ExampleBool;

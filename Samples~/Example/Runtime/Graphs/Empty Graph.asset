@@ -1,26 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-1757378864914681328
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed165b12bb8f4c948932f8ee28821eca, type: 3}
-  m_Name: Start
-  m_EditorClassIdentifier: 
-  Ports:
-  - Name: Next
-    Direction: 1
-    CanBeRemoved: 0
-    guid: c1ca17f1-9617-4911-8a4b-3a0079eb5dc7
-    Connections: []
-  internal_guid: b74a35fc-9f15-4e47-a760-91dadb419769
-  editor_ActiveNode: 0
-  position: {x: 270, y: 30}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6fde670e7119d9429e3117e89788fe2, type: 3}
   m_Name: Empty Graph
   m_EditorClassIdentifier: 
-  StartingNode: {fileID: -1757378864914681328}
+  StartingNode: {fileID: 6750337293623085363}
   Nodes:
-  - {fileID: -1757378864914681328}
-  CommentBlocks: []
+  - {fileID: 6750337293623085363}
   BlackboardProperties: []
---- !u!114 &6069609887101296818
+--- !u!114 &6750337293623085363
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -50,12 +28,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed165b12bb8f4c948932f8ee28821eca, type: 3}
   m_Name: Start
   m_EditorClassIdentifier: 
+  graph: {fileID: 0}
   Ports:
-  - Name: Next
-    Direction: 1
-    CanBeRemoved: 0
-    guid: 0a6bf948-ec12-4a6f-9fb7-fa3355f97d95
-    Connections: []
-  internal_guid: 4e5ad81c-24a2-435d-8218-21a63b09016d
+  - id: 0
+  internal_guid: 7cf0956a-2e04-4d75-ba41-137841489042
   editor_ActiveNode: 0
   position: {x: 270, y: 30}
+  references:
+    version: 1
+    00000000:
+      type: {class: VisualGraphPort, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
+      data:
+        Name: Next
+        Direction: 1
+        CanBeRemoved: 0
+        guid: 1057766b-3962-4883-8f34-f0df53e8bba6
+        Connections: []

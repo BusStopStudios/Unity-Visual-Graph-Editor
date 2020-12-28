@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using UnityEngine;
 
 namespace VisualGraphRuntime
@@ -112,7 +113,27 @@ namespace VisualGraphRuntime
         {
 			VisualGraphNode graphNode = Activator.CreateInstance(nodeType) as VisualGraphNode;
 			graphNode.graph = this;
+			graphNode.Init();
 			Nodes.Add(graphNode);
+
+			NodePortAggregateAttribute dynamicsAttrib = graphNode.GetType().GetCustomAttribute<NodePortAggregateAttribute>();
+			Debug.Assert(dynamicsAttrib != null, $"Graph node requires a NodePortAggregateAttribute {graphNode.GetType().Name}");
+
+			PortCapacityAttribute capacityAttrib = graphNode.GetType().GetCustomAttribute<PortCapacityAttribute>();
+			Debug.Assert(capacityAttrib != null, $"Graph node requires a PortCapacityAttribute {graphNode.GetType().Name}");
+
+			if (dynamicsAttrib.InputPortAggregate != NodePortAggregateAttribute.PortAggregate.None)
+			{
+				VisualGraphPort graphPort = graphNode.AddPort("Input", VisualGraphPort.PortDirection.Input);
+				graphPort.CanBeRemoved = false;
+			}
+
+			if (dynamicsAttrib.OutputPortAggregate == NodePortAggregateAttribute.PortAggregate.Single)
+			{
+				VisualGraphPort graphPort = graphNode.AddPort("Exit", VisualGraphPort.PortDirection.Output);
+				graphPort.CanBeRemoved = false;
+			}
+
 			return graphNode;
 		}
 

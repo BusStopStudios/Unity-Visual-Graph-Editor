@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using VisualGraphRuntime;
 
+[DefaultPortType(typeof(FSMPort))]
+
 public abstract class BaseState : VisualGraphNode
 {
 	[HideInInspector] public FSMGraph fsm;
