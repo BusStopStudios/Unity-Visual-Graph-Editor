@@ -1,6 +1,6 @@
 {
     "name": "busstopstudios.unity.visual-graph",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "displayName": "Visual Graph",
     "description": "Extension to Unity's GraphView. You can use this to extend Unitys Experimental GraphView to create Graphs that have an entry point to custom nodes.",
     "unity": "2020.2",
