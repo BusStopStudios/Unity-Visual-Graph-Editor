@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-4766481188797224069
+--- !u!114 &-1236883665489293308
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13,48 +13,9 @@ MonoBehaviour:
   m_Name: GameObjectBlackboardProperty
   m_EditorClassIdentifier: 
   overrideProperty: 0
-  guid: a23f570e-4449-4668-9d43-f64d2d478625
+  guid: a3d2a5f3-2a8b-4e91-9b7a-b01320a75479
   Name: Light
   abstractData: {fileID: 0}
---- !u!114 &-4762455501342456879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed165b12bb8f4c948932f8ee28821eca, type: 3}
-  m_Name: Start
-  m_EditorClassIdentifier: 
-  Ports:
-  - Name: Next
-    Direction: 1
-    CanBeRemoved: 0
-    guid: 0eafa0c2-8f36-4884-b093-c05f397f4457
-    Connections:
-    - node_guid: b24ec832-1198-4aae-9935-89d2dac03b79
-      port_guid: cfa2cb2e-7a64-4fea-8876-e104e726c7ef
-  internal_guid: 1de592e0-cf71-4d17-a569-5b9c46aa0e3b
-  editor_ActiveNode: 0
-  position: {x: 270, y: 30}
---- !u!114 &-1927458203105607900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd71a48f486cef54b885527933b16c89, type: 3}
-  m_Name: FloatBlackboardProperty
-  m_EditorClassIdentifier: 
-  overrideProperty: 0
-  guid: dbbe92ef-c21b-4d84-92ab-93871e307abd
-  Name: Delay
-  abstractData: 0.5
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,17 +28,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cac613c2c69d574a8f136683f8f0de0, type: 3}
   m_Name: Light  FSM Graph
   m_EditorClassIdentifier: 
-  StartingNode: {fileID: -4762455501342456879}
+  StartingNode: {fileID: 6556755584268572760}
   Nodes:
-  - {fileID: -4762455501342456879}
-  - {fileID: 5274216720631097343}
-  - {fileID: 7433531534274584544}
-  CommentBlocks: []
+  - {fileID: 6556755584268572760}
+  - {fileID: 9062436233233538063}
+  - {fileID: 7611134317270045205}
   BlackboardProperties:
-  - {fileID: -1927458203105607900}
-  - {fileID: -4766481188797224069}
+  - {fileID: 8484639206423503057}
+  - {fileID: -1236883665489293308}
   currentState: {fileID: 0}
---- !u!114 &5274216720631097343
+--- !u!114 &6556755584268572760
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,31 +46,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0de229ea86724a8478b9b558e2c9399f, type: 3}
-  m_Name: Light Off State
+  m_Script: {fileID: 11500000, guid: ed165b12bb8f4c948932f8ee28821eca, type: 3}
+  m_Name: Start
   m_EditorClassIdentifier: 
+  graph: {fileID: 0}
   Ports:
-  - Name: Input
-    Direction: 0
-    CanBeRemoved: 0
-    guid: cfa2cb2e-7a64-4fea-8876-e104e726c7ef
-    Connections:
-    - node_guid: 1de592e0-cf71-4d17-a569-5b9c46aa0e3b
-      port_guid: 0eafa0c2-8f36-4884-b093-c05f397f4457
-    - node_guid: 752033ba-41ee-4bbc-a577-1bb8b6e2ee92
-      port_guid: c2c3de32-ec55-45f7-b5dc-5a48c805211c
-  - Name: Turn On
-    Direction: 1
-    CanBeRemoved: 1
-    guid: 983d7af5-a015-4297-b17b-14c381938972
-    Connections:
-    - node_guid: 752033ba-41ee-4bbc-a577-1bb8b6e2ee92
-      port_guid: 2660277a-31d8-4c9a-a2a4-9b7659dac8d0
-  internal_guid: b24ec832-1198-4aae-9935-89d2dac03b79
-  editor_ActiveNode: 1
-  position: {x: 498, y: 153}
-  fsm: {fileID: 0}
---- !u!114 &7433531534274584544
+  - id: 0
+  internal_guid: a91214cb-c47d-4ffb-85eb-e5d8d46288a4
+  editor_ActiveNode: 0
+  position: {x: 270, y: 30}
+  references:
+    version: 1
+    00000000:
+      type: {class: VisualGraphPort, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
+      data:
+        Name: Next
+        Direction: 1
+        CanBeRemoved: 0
+        guid: 5698114f-5786-4466-907c-83310ce347ca
+        Connections:
+        - node_guid: 40a3d9f0-f7c4-41fc-a507-6566b5414efd
+          port_guid: b119b1f8-877c-4497-ad11-370c8f8fa8f9
+--- !u!114 &7611134317270045205
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,22 +79,97 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8b611e4035f82c489ba8981c3e229a7, type: 3}
   m_Name: Light On State
   m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
   Ports:
-  - Name: Input
-    Direction: 0
-    CanBeRemoved: 0
-    guid: 2660277a-31d8-4c9a-a2a4-9b7659dac8d0
-    Connections:
-    - node_guid: b24ec832-1198-4aae-9935-89d2dac03b79
-      port_guid: 983d7af5-a015-4297-b17b-14c381938972
-  - Name: Turn Off
-    Direction: 1
-    CanBeRemoved: 1
-    guid: c2c3de32-ec55-45f7-b5dc-5a48c805211c
-    Connections:
-    - node_guid: b24ec832-1198-4aae-9935-89d2dac03b79
-      port_guid: cfa2cb2e-7a64-4fea-8876-e104e726c7ef
-  internal_guid: 752033ba-41ee-4bbc-a577-1bb8b6e2ee92
+  - id: 0
+  - id: 1
+  internal_guid: cd90c6a0-62a8-4969-8038-ec12be83ae08
   editor_ActiveNode: 0
-  position: {x: 531, y: 349}
+  position: {x: 520, y: 397}
   fsm: {fileID: 0}
+  references:
+    version: 1
+    00000000:
+      type: {class: FSMPort, ns: , asm: Assembly-CSharp}
+      data:
+        Name: Input
+        Direction: 0
+        CanBeRemoved: 0
+        guid: 73b44dbc-261c-419b-a4ec-417f34bd12f7
+        Connections:
+        - node_guid: 40a3d9f0-f7c4-41fc-a507-6566b5414efd
+          port_guid: 4d77fdd5-56c1-4d5e-b1e9-99574c89b05c
+        state: 0
+    00000001:
+      type: {class: FSMPort, ns: , asm: Assembly-CSharp}
+      data:
+        Name: Exit
+        Direction: 1
+        CanBeRemoved: 1
+        guid: 4aaed5af-17d9-40aa-9570-d01537353d32
+        Connections:
+        - node_guid: 40a3d9f0-f7c4-41fc-a507-6566b5414efd
+          port_guid: b119b1f8-877c-4497-ad11-370c8f8fa8f9
+        state: 2
+--- !u!114 &8484639206423503057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd71a48f486cef54b885527933b16c89, type: 3}
+  m_Name: FloatBlackboardProperty
+  m_EditorClassIdentifier: 
+  overrideProperty: 0
+  guid: 63ffe771-c297-4ee0-bac5-00b01242be13
+  Name: Delay
+  abstractData: 0.5
+--- !u!114 &9062436233233538063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0de229ea86724a8478b9b558e2c9399f, type: 3}
+  m_Name: Light Off State
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  Ports:
+  - id: 0
+  - id: 1
+  internal_guid: 40a3d9f0-f7c4-41fc-a507-6566b5414efd
+  editor_ActiveNode: 1
+  position: {x: 467, y: 84}
+  fsm: {fileID: 0}
+  references:
+    version: 1
+    00000000:
+      type: {class: FSMPort, ns: , asm: Assembly-CSharp}
+      data:
+        Name: Input
+        Direction: 0
+        CanBeRemoved: 0
+        guid: b119b1f8-877c-4497-ad11-370c8f8fa8f9
+        Connections:
+        - node_guid: a91214cb-c47d-4ffb-85eb-e5d8d46288a4
+          port_guid: 5698114f-5786-4466-907c-83310ce347ca
+        - node_guid: cd90c6a0-62a8-4969-8038-ec12be83ae08
+          port_guid: 4aaed5af-17d9-40aa-9570-d01537353d32
+        state: 0
+    00000001:
+      type: {class: FSMPort, ns: , asm: Assembly-CSharp}
+      data:
+        Name: Exit
+        Direction: 1
+        CanBeRemoved: 1
+        guid: 4d77fdd5-56c1-4d5e-b1e9-99574c89b05c
+        Connections:
+        - node_guid: cd90c6a0-62a8-4969-8038-ec12be83ae08
+          port_guid: 73b44dbc-261c-419b-a4ec-417f34bd12f7
+        state: 1

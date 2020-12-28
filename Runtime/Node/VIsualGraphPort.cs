@@ -14,7 +14,7 @@ namespace VisualGraphRuntime
     /// Node ports for connections
     /// </summary>
     [Serializable]
-    public sealed class VisualGraphPort
+    public class VisualGraphPort
     {
         /// <summary>
         /// Port Directions
@@ -49,6 +49,11 @@ namespace VisualGraphRuntime
         /// List of all connections for this port.
         /// </summary>
         [HideInInspector][SerializeField] public List<VisualGraphPortConnection> Connections = new List<VisualGraphPortConnection>();
+
+        /// <summary>
+        /// Initialize
+        /// </summary>
+        public virtual void Init() { }
 
         /// <summary>
         /// Finds a Connection by port guid

@@ -1,28 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-4244378202077005130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed165b12bb8f4c948932f8ee28821eca, type: 3}
-  m_Name: Start
-  m_EditorClassIdentifier: 
-  Ports:
-  - Name: Next
-    Direction: 1
-    CanBeRemoved: 0
-    guid: 76c3ee26-fdb5-48e7-9dc4-2f294e04cb27
-    Connections:
-    - node_guid: 4d78d818-5c7d-4a73-b4c8-197c51af2a40
-      port_guid: af71a15e-4711-4c6e-a75f-c7f4bd67fd4b
-  internal_guid: 31a99217-b5cb-4fb2-822e-0b4361c0d060
-  editor_ActiveNode: 0
-  position: {x: 270, y: 30}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35,13 +12,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6fde670e7119d9429e3117e89788fe2, type: 3}
   m_Name: Simple Graph
   m_EditorClassIdentifier: 
-  StartingNode: {fileID: -4244378202077005130}
+  StartingNode: {fileID: 2200814509731714274}
   Nodes:
-  - {fileID: -4244378202077005130}
-  - {fileID: 2843988890808253228}
-  CommentBlocks: []
+  - {fileID: 2200814509731714274}
+  - {fileID: 3498280319350482697}
   BlackboardProperties: []
---- !u!114 &2843988890808253228
+--- !u!114 &2200814509731714274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed165b12bb8f4c948932f8ee28821eca, type: 3}
+  m_Name: Start
+  m_EditorClassIdentifier: 
+  graph: {fileID: 0}
+  Ports:
+  - id: 0
+  internal_guid: 53f96e22-e677-403a-b0d3-533c96bd1a7f
+  editor_ActiveNode: 0
+  position: {x: 270, y: 30}
+  references:
+    version: 1
+    00000000:
+      type: {class: VisualGraphPort, ns: VisualGraphRuntime, asm: VisualGraphRuntime}
+      data:
+        Name: Next
+        Direction: 1
+        CanBeRemoved: 0
+        guid: 058a2d76-51a2-4438-b769-e8722584a475
+        Connections:
+        - node_guid: 61709656-a018-4032-ba6c-230441f3d6a5
+          port_guid: 97aec483-afc7-4cff-9103-07abcf282a08
+--- !u!114 &3498280319350482697
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -53,19 +59,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f410bd6e8d523a47b8745e559931533, type: 3}
   m_Name: Example Node
   m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
   Ports:
-  - Name: Input
-    Direction: 0
-    CanBeRemoved: 0
-    guid: af71a15e-4711-4c6e-a75f-c7f4bd67fd4b
-    Connections:
-    - node_guid: 31a99217-b5cb-4fb2-822e-0b4361c0d060
-      port_guid: 76c3ee26-fdb5-48e7-9dc4-2f294e04cb27
-  internal_guid: 4d78d818-5c7d-4a73-b4c8-197c51af2a40
+  - id: 0
+  - id: 1
+  - id: 2
+  - id: 3
+  - id: 4
+  internal_guid: 61709656-a018-4032-ba6c-230441f3d6a5
   editor_ActiveNode: 0
-  position: {x: 453, y: 208}
+  position: {x: 481, y: 170}
   ExampleBool: 0
   ExampleInt: 0
   ExampleString: 
   ExampleFloat: 0
   ExampleVector: {x: 0, y: 0, z: 0}
+  references:
+    version: 1
+    00000000:
+      type: {class: ExamplePort, ns: , asm: Assembly-CSharp}
+      data:
+        Name: Input
+        Direction: 0
+        CanBeRemoved: 0
+        guid: 97aec483-afc7-4cff-9103-07abcf282a08
+        Connections:
+        - node_guid: 53f96e22-e677-403a-b0d3-533c96bd1a7f
+          port_guid: 058a2d76-51a2-4438-b769-e8722584a475
+    00000001:
+      type: {class: ExamplePort, ns: , asm: Assembly-CSharp}
+      data:
+        Name: Exit
+        Direction: 1
+        CanBeRemoved: 1
+        guid: d2f3d294-80da-4f26-abb5-4c811981b6ee
+        Connections: []
+    00000002:
+      type: {class: ExamplePort, ns: , asm: Assembly-CSharp}
+      data:
+        Name: Exit
+        Direction: 1
+        CanBeRemoved: 1
+        guid: 18f06172-2afe-41ac-81b8-01f4bb8fcda1
+        Connections: []
+    00000003:
+      type: {class: ExamplePort, ns: , asm: Assembly-CSharp}
+      data:
+        Name: Exit
+        Direction: 1
+        CanBeRemoved: 1
+        guid: 2b2db6bc-6021-4089-9d8a-b4d06a057790
+        Connections: []
+    00000004:
+      type: {class: ExamplePort, ns: , asm: Assembly-CSharp}
+      data:
+        Name: Input
+        Direction: 0
+        CanBeRemoved: 1
+        guid: ecd7b3e7-8857-4249-9087-eb0e123f5fe9
+        Connections: []

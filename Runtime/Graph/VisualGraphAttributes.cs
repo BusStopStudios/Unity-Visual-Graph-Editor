@@ -43,6 +43,21 @@ namespace VisualGraphRuntime
         }
     }
 
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
+    public class DefaultPortTypeAttribute : Attribute
+    {
+        public Type type;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_name"></param>
+        public DefaultPortTypeAttribute(Type _type)
+        {
+            type = _type;
+        }
+    }
+
     /// <summary>
     /// 
     /// </summary>

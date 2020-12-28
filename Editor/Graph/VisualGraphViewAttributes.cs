@@ -22,4 +22,22 @@ namespace VisualGraphEditor
             this.type = type;
         }
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
+    public class CustomPortViewAttribute : Attribute
+    {
+        public Type type;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_name"></param>
+        public CustomPortViewAttribute(Type type)
+        {
+            this.type = type;
+        }
+    }
 }
