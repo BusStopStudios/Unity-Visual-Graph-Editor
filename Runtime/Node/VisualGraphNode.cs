@@ -29,7 +29,7 @@ namespace VisualGraphRuntime
         public IEnumerable<VisualGraphPort> Outputs { get { foreach (VisualGraphPort port in Ports) { if (port.Direction == VisualGraphPort.PortDirection.Output) yield return port; } } }
 
 
-        [HideInInspector] public VisualGraph graph;
+        [HideInInspector][NonSerialized] public VisualGraph graph;
 
         /// <summary>
         /// Get the guid for the Node

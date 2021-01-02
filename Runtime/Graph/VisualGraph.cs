@@ -44,8 +44,17 @@ namespace VisualGraphRuntime
 		/// <returns></returns>
 		public virtual VisualGraph Clone()
 		{
-            VisualGraph clone = Instantiate(this);
-			clone.InitializeConnections();
+			VisualGraph clone = Instantiate(this);
+			for(int i = 0; i < Nodes.Count; i++)
+            {
+				VisualGraphNode newNode = Instantiate(Nodes[i]) as VisualGraphNode;
+				newNode.graph = clone;
+				clone.Nodes[i] = newNode;
+			}
+
+			clone.StartingNode = clone.FindNodeByGuid(StartingNode.guid);
+			clone.InitializeGraph();
+
 			return clone;
 		}
 
@@ -57,12 +66,13 @@ namespace VisualGraphRuntime
 		}
 
 		/// <summary>
-		/// Connect all connections
+		/// Initialize all nodes with new version of graph
 		/// </summary>
-		public void InitializeConnections()
+		public void InitializeGraph()
         {
 			foreach (var node in Nodes)
 			{
+				node.graph = this;
 				foreach (var port in node.Ports)
 				{
 					foreach (var connection in port.Connections)
