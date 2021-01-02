@@ -146,7 +146,7 @@ namespace VisualGraphEditor
 			if (visualGraph != null)
 			{
 				// When the graph is loaded connections need to be remade
-				visualGraph.InitializeConnections();
+				visualGraph.InitializeGraph();
 
 				activeVisualGraph = true;
 
