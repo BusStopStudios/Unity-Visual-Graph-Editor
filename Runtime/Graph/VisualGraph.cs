@@ -44,8 +44,17 @@ namespace VisualGraphRuntime
 		/// <returns></returns>
 		public virtual VisualGraph Clone()
 		{
-            VisualGraph clone = Instantiate(this);
+			VisualGraph clone = Instantiate(this);
+			for(int i = 0; i < Nodes.Count; i++)
+            {
+				VisualGraphNode newNode = Instantiate(Nodes[i]) as VisualGraphNode;
+				newNode.graph = clone;
+				clone.Nodes[i] = newNode;
+			}
+
+			clone.StartingNode = clone.FindNodeByGuid(StartingNode.guid);
 			clone.InitializeGraph();
+
 			return clone;
 		}
 
