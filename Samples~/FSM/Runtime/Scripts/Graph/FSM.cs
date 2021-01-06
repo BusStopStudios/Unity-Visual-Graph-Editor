@@ -7,9 +7,9 @@ public class FSM : VisualGraphMonoBehaviour<FSMGraph>
 {
     void Update()
     {
-        if (InternalGraph != null)
+        if (Graph != null)
 		{
-            InternalGraph.Update();
+            Graph.Update();
 		}
     }
 }
